@@ -28,4 +28,4 @@ jobs:
       - name: Upload release assets
         uses: softprops/action-gh-release@v1
         with:
-          files: ./publish.zip
+          files: ./release.zip
