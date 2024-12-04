@@ -74,6 +74,10 @@ namespace vmr_generator.ViewModels
             this.simConnect.OnRecvException += SimConnect_OnRecvException;
         }
 
+        /// <summary>
+        /// Saves the list of models to the specified file as XML.
+        /// </summary>
+        /// <param name="fileName">The file name to save the XML to</param>
         public void ToXml(string fileName)
         {
             var serializer = new XmlSerializer(typeof(ModelMatchingViewModel));
@@ -83,17 +87,32 @@ namespace vmr_generator.ViewModels
             Debug.WriteLine($"Saved to {fileName}");
         }
 
+        /// <summary>
+        /// Handles exceptions received from SimConnect.
+        /// </summary>
+        /// <param name="sender">Sender of the exception</param>
+        /// <param name="data">Details of the exception</param>
         private void SimConnect_OnRecvException(SimConnect sender, SIMCONNECT_RECV_EXCEPTION data)
         {
             Debug.WriteLine($"SimConnect exception {data.dwException}");
         }
 
+        /// <summary>
+        /// Handles the loss of connection to the simulator.
+        /// </summary>
+        /// <param name="sender">Sender of the exception</param>
+        /// <param name="data">SimConnect additional details</param>
         private void SimConnect_OnRecvQuit(SimConnect sender, SIMCONNECT_RECV data)
         {
             this.IsConnected = false;
             Debug.WriteLine("Disconnected from simulator.");
         }
 
+        /// <summary>
+        /// Handles when a connection is established with the simulator.
+        /// </summary>
+        /// <param name="sender">Sender of the exception</param>
+        /// <param name="data">SimConnect additional details</param>
         private void SimConnect_OnRecvOpen(SimConnect sender, SIMCONNECT_RECV_OPEN data)
         {
             this.IsConnected = true;
@@ -101,11 +120,13 @@ namespace vmr_generator.ViewModels
         }
 
         /// <summary>
-        /// Handles Win32 messages and looks for SimConnect specific messages.
+        /// Looks for SimConnect specific messages from Win32 and makes the SimConnect library process them.
         /// </summary>
         /// <param name="message">The message to process</param>
         /// <returns>True if processed</returns>
+#pragma warning disable IDE0060 // Remove unused parameter
         public IntPtr HandleWindowsEvent(IntPtr hwnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
+#pragma warning restore IDE0060 // Remove unused parameter
         {
             switch (message)
             {
