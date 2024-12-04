@@ -21,4 +21,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <None Include=".github\release.yml" />
+    <None Include=".github\workflows\ci.yml" />
+    <None Include=".github\workflows\pr_label_required.yml" />
+  </ItemGroup>
 </Project>

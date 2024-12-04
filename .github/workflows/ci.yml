@@ -1,0 +1,31 @@
+name: Build .NET 7.0 WPF Application
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest  # Run on the latest Windows environment
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up .NET 7.0
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '7.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build the WPF application
+        run: dotnet build vmr-generator.sln --configuration Release
+
+#      - name: Publish the WPF application
+#        run: dotnet publish YourProjectName.sln --configuration Release --output ./publish  # Adjust output folder as needed
