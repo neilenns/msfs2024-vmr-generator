@@ -4,12 +4,15 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Xml.Serialization;
 
 namespace vmr_generator.ViewModels
 {
+    [XmlRoot("ModelMatchRuleSet")]
     public class ModelMatchingViewModel : INotifyPropertyChanged
     {
         const int WM_USER_SIMCONNECT = 0x0402;
@@ -23,12 +26,14 @@ namespace vmr_generator.ViewModels
         /// <summary>
         /// The list of all liveries retrieved from MSFS2024.
         /// </summary>
-        public ObservableCollection<Livery> Liveries { get; set; } = new ObservableCollection<Livery>();
+        [XmlElement("ModelMatchRule")]
+        public ObservableCollection<Livery> Liveries { get; set; } = [];
 
         private bool _isConnected;
         /// <summary>
         /// True if SimConnect is connected to MSFS2024.
         /// </summary>
+        [XmlIgnore]
         public bool IsConnected
         {
             get => _isConnected;
@@ -67,6 +72,15 @@ namespace vmr_generator.ViewModels
             this.simConnect.OnRecvOpen += SimConnect_OnRecvOpen;
             this.simConnect.OnRecvQuit += SimConnect_OnRecvQuit;
             this.simConnect.OnRecvException += SimConnect_OnRecvException;
+        }
+
+        public void ToXml()
+        {
+            var serializer = new XmlSerializer(typeof(ModelMatchingViewModel));
+
+            using var writer = new StringWriter();
+            serializer.Serialize(writer, this);
+            Debug.WriteLine(writer.ToString());
         }
 
         private void SimConnect_OnRecvException(SimConnect sender, SIMCONNECT_RECV_EXCEPTION data)

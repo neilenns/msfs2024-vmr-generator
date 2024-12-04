@@ -60,5 +60,10 @@ namespace vmr_generator
         {
             this.modelMatchingViewModel.ConnectToSim(_hwnd);
         }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            this.modelMatchingViewModel.ToXml();
+        }
     }
 }
