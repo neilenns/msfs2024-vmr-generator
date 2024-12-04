@@ -12,18 +12,21 @@
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.FlightSimulator.SimConnect">
-      <HintPath>C:\MSFS 2024 SDK\SimConnect SDK\lib\managed\Microsoft.FlightSimulator.SimConnect.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
+    <None Update="Microsoft.FlightSimulator.SimConnect.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="SimConnect.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include=".github\release.yml" />
     <None Include=".github\workflows\ci.yml" />
     <None Include=".github\workflows\pr_label_required.yml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.FlightSimulator.SimConnect">
+      <HintPath>Microsoft.FlightSimulator.SimConnect.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
