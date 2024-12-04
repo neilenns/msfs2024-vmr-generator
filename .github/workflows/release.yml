@@ -1,0 +1,31 @@
+name: Release application
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    name: "Release build"
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Build the application
+        run: dotnet build vmr-generator.sln --configuration Release
+
+      - name: Zip the build output
+        run: |
+          Compress-Archive -Path ./bin/Release/net9.0-windows/* -DestinationPath ./release.zip
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ./publish.zip

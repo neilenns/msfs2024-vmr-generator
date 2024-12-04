@@ -1,4 +1,4 @@
-name: Build .NET 7.0 WPF Application
+name: CI build
 
 on:
   push:
@@ -10,22 +10,17 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest  # Run on the latest Windows environment
+    name: "CI build"
+    runs-on: windows-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up .NET 9.0
+      - name: Set up .NET
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: '9.0.x'
 
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build the WPF application
+      - name: Build the application
         run: dotnet build vmr-generator.sln --configuration Release
-
-#      - name: Publish the WPF application
-#        run: dotnet publish YourProjectName.sln --configuration Release --output ./publish  # Adjust output folder as needed
