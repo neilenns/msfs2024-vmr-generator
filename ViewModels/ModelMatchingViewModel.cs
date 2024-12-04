@@ -74,13 +74,13 @@ namespace vmr_generator.ViewModels
             this.simConnect.OnRecvException += SimConnect_OnRecvException;
         }
 
-        public void ToXml()
+        public void ToXml(string fileName)
         {
             var serializer = new XmlSerializer(typeof(ModelMatchingViewModel));
 
-            using var writer = new StringWriter();
+            using var writer = new StreamWriter(fileName);
             serializer.Serialize(writer, this);
-            Debug.WriteLine(writer.ToString());
+            Debug.WriteLine($"Saved to {fileName}");
         }
 
         private void SimConnect_OnRecvException(SimConnect sender, SIMCONNECT_RECV_EXCEPTION data)

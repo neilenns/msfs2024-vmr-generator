@@ -1,4 +1,5 @@
 ﻿using Microsoft.FlightSimulator.SimConnect;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -63,7 +64,20 @@ namespace vmr_generator
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            this.modelMatchingViewModel.ToXml();
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Model Matching Rule Sets (*.vmr)|*.vmr|All Files (*.*)|*.*",
+                Title = "Save model matching file",
+                FileName = "MSFS2024.vmr"
+            };
+
+            bool result = saveFileDialog.ShowDialog() ?? false;
+            if (!result)
+            {
+                return;
+            }
+
+            this.modelMatchingViewModel.ToXml(saveFileDialog.FileName);
         }
     }
 }
