@@ -21,16 +21,16 @@ namespace vmr_generator.ViewModels.ModelMatching
 		/// Opens a connection to the simulator.
 		/// </summary>
 		/// <param name="handle">The window handle of the app</param>
-		public void ConnectToSim(IntPtr handle)
+		public void ConnectToSim()
 		{
-			if (IsConnected)
+			if (IsConnected || WindowHandle == IntPtr.Zero)
 			{
 				return;
 			}
 
 			try
 			{
-				_simConnect = new SimConnect("WMR Generator", handle, WM_USER_SIMCONNECT, null, 0);
+				_simConnect = new SimConnect("WMR Generator", WindowHandle, WM_USER_SIMCONNECT, null, 0);
 				_simConnect.OnRecvOpen += SimConnect_OnRecvOpen;
 				_simConnect.OnRecvQuit += SimConnect_OnRecvQuit;
 				_simConnect.OnRecvException += SimConnect_OnRecvException;
@@ -40,6 +40,11 @@ namespace vmr_generator.ViewModels.ModelMatching
 			{
 				ErrorMessage = $"Error connecting to simulator: {ex.Message}";
 			}
+		}
+
+		public bool CanConnectToSim()
+		{
+			return !(IsConnected || WindowHandle == IntPtr.Zero);
 		}
 
 		/// <summary>

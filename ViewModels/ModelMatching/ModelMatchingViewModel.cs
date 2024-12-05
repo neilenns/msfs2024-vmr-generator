@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -10,15 +11,16 @@ namespace vmr_generator.ViewModels.ModelMatching
     [XmlRoot("ModelMatchRuleSet")]
     public partial class ModelMatchingViewModel : INotifyPropertyChanged
     {
-        private IDialogService? _messageBoxService;
         /// <summary>
         /// Provides access to a message box to display information to the user.
         /// </summary>
-        public IDialogService? MessageBoxService
-        {
-            get { return _messageBoxService; }
-            set { _messageBoxService = value; }
-        }
+        public IDialogService? MessageBoxService { get; set; }
+
+        /// <summary>
+        /// The window handle of the parent view. Must be set before calling any
+        /// of the SimConnect commands.
+        /// </summary>
+        public IntPtr WindowHandle { get; set; }
 
         /// <summary>
         /// Fires when the value of a property changes.
@@ -36,7 +38,7 @@ namespace vmr_generator.ViewModels.ModelMatching
             {
                 _errorMessage = value;
                 Debug.WriteLine(value);
-                _messageBoxService?.ShowError(value, "Error");
+                MessageBoxService?.ShowError(value, "Error");
                 OnPropertyChanged(nameof(ErrorMessage));
             }
         }

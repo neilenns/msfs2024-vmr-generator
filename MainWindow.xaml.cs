@@ -33,8 +33,7 @@ namespace vmr_generator
 
             _hwndSource = (HwndSource)PresentationSource.FromVisual(this);
             _hwndSource.AddHook(_modelMatchingViewModel.HandleWindowsEvent);
-            _hwnd = new WindowInteropHelper(this).Handle;
-
+            _modelMatchingViewModel.WindowHandle = new WindowInteropHelper(this).Handle;
         }
 
         protected override void OnClosed(EventArgs e)
@@ -47,11 +46,6 @@ namespace vmr_generator
 
             base.OnClosed(e);
         }
-        private void btnConnect_Click(object sender, RoutedEventArgs e)
-        {
-            _modelMatchingViewModel.ConnectToSim(_hwnd);
-        }
-
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             var saveFileDialog = new SaveFileDialog
