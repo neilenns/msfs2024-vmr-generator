@@ -1,6 +1,7 @@
 ﻿#nullable enable
 using Microsoft.FlightSimulator.SimConnect;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -15,6 +16,11 @@ namespace vmr_generator.ViewModels
     [XmlRoot("ModelMatchRuleSet")]
     public class ModelMatchingViewModel : INotifyPropertyChanged
     {
+        enum RequestID
+        {
+            GetInputEvents
+        }
+
         const int WM_USER_SIMCONNECT = 0x0402;
         SimConnect? simConnect;
 
@@ -27,7 +33,7 @@ namespace vmr_generator.ViewModels
         /// The list of all liveries retrieved from MSFS2024.
         /// </summary>
         [XmlElement("ModelMatchRule")]
-        public ObservableCollection<Livery> Liveries { get; set; } = [];
+        public RangeObservableCollection<Livery> Liveries { get; set; } = [];
 
         private bool _isConnected;
         /// <summary>
@@ -72,6 +78,21 @@ namespace vmr_generator.ViewModels
             this.simConnect.OnRecvOpen += SimConnect_OnRecvOpen;
             this.simConnect.OnRecvQuit += SimConnect_OnRecvQuit;
             this.simConnect.OnRecvException += SimConnect_OnRecvException;
+            this.simConnect.OnRecvEnumerateInputEvents += SimConnect_OnRecvEnumerateInputEvents; ;
+        }
+
+        /// <summary>
+        /// Sends a request to the sim for the list of liveries. This is an async process.
+        /// Items will be added to the Liveries property as they are received.
+        /// </summary>
+        public void GetLiveries()
+        {
+            if (!IsConnected || this.simConnect == null)
+            {
+                return;
+            }
+
+            this.simConnect.EnumerateInputEvents(RequestID.GetInputEvents);
         }
 
         /// <summary>
@@ -117,6 +138,29 @@ namespace vmr_generator.ViewModels
         {
             this.IsConnected = true;
             Debug.WriteLine("Connected to simulator.");
+        }
+
+        /// <summary>
+        /// Handles receiving input events from the simulator.
+        /// </summary>
+        /// <param name="sender">Sender of the exception</param>
+        /// <param name="data">SimConnect additional details</param>
+        private void SimConnect_OnRecvEnumerateInputEvents(SimConnect sender, SIMCONNECT_RECV_ENUMERATE_INPUT_EVENTS data)
+        {
+            List<Livery> liveriesToAdd = [];
+
+            foreach (object item in data.rgData)
+            {
+                if (item is SIMCONNECT_INPUT_EVENT_DESCRIPTOR descriptor)
+                {
+                    liveriesToAdd.Add(new Livery() { 
+                        ModelName = descriptor.Name,
+                        TypeCode = descriptor.Hash.ToString(),
+                    });
+                }
+            }
+
+            this.Liveries.AddRange(liveriesToAdd);
         }
 
         /// <summary>
