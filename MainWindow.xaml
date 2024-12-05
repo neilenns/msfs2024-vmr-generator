@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:vmr_generator"
-        xmlns:properties="clr-namespace:vmr_generator.Properties"
-        mc:Ignorable="d"
+        xmlns:properties="clr-namespace:vmr_generator.Properties" 
+        xmlns:modelmatching="clr-namespace:vmr_generator.ViewModels.ModelMatching" 
+        d:DataContext="{d:DesignInstance Type=modelmatching:ModelMatchingViewModel}"
+    mc:Ignorable="d"
         x:Class="vmr_generator.MainWindow"
         Title="{x:Static properties:Resources.MainWindowTitle}" Height="450" Width="800">
     <Grid>
