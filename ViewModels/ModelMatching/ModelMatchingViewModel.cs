@@ -1,11 +1,13 @@
 ﻿#nullable enable
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Input;
 using System.Xml.Serialization;
 using vmr_generator.Interfaces;
+using vmr_generator.Models;
 
 namespace vmr_generator.ViewModels.ModelMatching
 {
@@ -15,7 +17,12 @@ namespace vmr_generator.ViewModels.ModelMatching
         /// <summary>
         /// Provides access to a message box to display information to the user.
         /// </summary>
-        public IDialogService? MessageBoxService { get; set; }
+        public IMessageBoxService? MessageBoxService { get; set; }
+
+        /// <summary>
+        /// Provides access to a file save dialog to get a file name from the user.
+        /// </summary>
+        public ISaveDialogService? SaveDialogService { get; set; }
 
         /// <summary>
         /// The window handle of the parent view. Must be set before calling any
@@ -29,6 +36,7 @@ namespace vmr_generator.ViewModels.ModelMatching
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private string? _errorMessage;
+
         /// <summary>
         /// Provides the error text for any errors encountered by the view model.
         /// </summary>
@@ -47,14 +55,12 @@ namespace vmr_generator.ViewModels.ModelMatching
         /// <summary>
         /// The list of all liveries retrieved from MSFS2024.
         /// </summary>
-        [XmlElement("ModelMatchRule")]
         public RangeObservableCollection<Livery> Liveries { get; set; } = [];
 
         private bool _isConnected;
         /// <summary>
         /// True if SimConnect is connected to MSFS2024.
         /// </summary>
-        [XmlIgnore]
         public bool IsConnected
         {
             get => _isConnected;
@@ -84,10 +90,11 @@ namespace vmr_generator.ViewModels.ModelMatching
         /// <param name="fileName">The file name to save the XML to</param>
         public void ToXml(string fileName)
         {
-            var serializer = new XmlSerializer(typeof(ModelMatchingViewModel));
+            var xmlRoot = new XmlRootAttribute("ModelMatchRuleSet");
+            var serializer = new XmlSerializer(typeof(RangeObservableCollection<Livery>), xmlRoot);
 
             using var writer = new StreamWriter(fileName);
-            serializer.Serialize(writer, this);
+            serializer.Serialize(writer, Liveries);
             Debug.WriteLine($"Saved to {fileName}");
         }
 

@@ -3,13 +3,13 @@ using vmr_generator.Interfaces;
 
 namespace vmr_generator.Services
 {
-	public class MessageBoxService : IDialogService
+	public class MessageBoxService : IMessageBoxService
 	{
-		private static readonly IDialogService _instance = new MessageBoxService();
+		private static readonly IMessageBoxService _instance = new MessageBoxService();
 		/// <summary>
 		/// Provides an instance of the MessageBoxService.
 		/// </summary>
-		public static IDialogService Instance => _instance;
+		public static IMessageBoxService Instance => _instance;
 
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
 		public void ShowError(string message, string title)

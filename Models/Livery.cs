@@ -1,16 +1,19 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
-public class Livery
+namespace vmr_generator.Models
 {
-    [XmlAttribute("TypeCode")]
+    [XmlType("ModelMatchRule")]
+    public class Livery
+    {
+        [XmlAttribute("TypeCode")]
 
-    public string TypeCode { get; set; }
-    [XmlAttribute("ModelName")]
+        public string TypeCode { get; set; }
+        [XmlAttribute("ModelName")]
 
-    public string ModelName { get; set; }
-    
-    public Livery()
-	{
-	}
+        public string ModelName { get; set; }
+
+        public Livery()
+        {
+        }
+    }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using Microsoft.FlightSimulator.SimConnect;
+using vmr_generator.Models;
 
 namespace vmr_generator.ViewModels.ModelMatching
 {

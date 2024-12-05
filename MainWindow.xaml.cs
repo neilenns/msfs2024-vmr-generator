@@ -21,7 +21,8 @@ namespace vmr_generator
 
             _modelMatchingViewModel = new ModelMatchingViewModel
             {
-                MessageBoxService = MessageBoxService.Instance
+                MessageBoxService = MessageBoxService.Instance,
+                SaveDialogService = SaveDialogService.Instance
             };
             DataContext = _modelMatchingViewModel;
         }
@@ -44,23 +45,6 @@ namespace vmr_generator
             }
 
             base.OnClosed(e);
-        }
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            var saveFileDialog = new SaveFileDialog
-            {
-                Filter = "Model Matching Rule Sets (*.vmr)|*.vmr|All Files (*.*)|*.*",
-                Title = "Save model matching file",
-                FileName = "MSFS2024.vmr"
-            };
-
-            bool result = saveFileDialog.ShowDialog() ?? false;
-            if (!result)
-            {
-                return;
-            }
-
-            _modelMatchingViewModel.ToXml(saveFileDialog.FileName);
         }
     }
 }
