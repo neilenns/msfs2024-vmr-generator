@@ -100,18 +100,18 @@ namespace vmr_generator.ViewModels.ModelMatching
                 {
                     _isSimRunning = value;
 
-                    // When the value changes to true automatically attempt a connection to the simulator.
-                    // Doing this here instead of in the timer elapsed handler ensures it only runs once
-                    // instead of every 5 seconds.
-                    if (value)
-                    {
-                        ConnectToSim();
-                    }
-
                     OnPropertyChanged(nameof(IsSimRunning));
                 }
-            }
 
+                // This ensures SimConnect keeps trying to connect to the sim when it is
+                // running but a connection hasn't been established. This happens when
+                // the sim first launches, but isn't ready to accept incoming SimConnect
+                // requests.
+                if (value && !IsConnected)
+                {
+                    ConnectToSim();
+                }
+            }
         }
 
         public string SimConnectedStateMessage

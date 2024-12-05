@@ -59,7 +59,7 @@ namespace vmr_generator.ViewModels.ModelMatching
 				// it to debug and return.
 				if (ex.HResult == -2147467259)
 				{
-					Debug.WriteLine($"Error connecting to the simulator, it probably isn't running: {ex.Message}");
+					Debug.WriteLine("Error connecting to the simulator, it probably isn't running or ready to accept connections.");
 					return;
 				}
 
@@ -124,7 +124,17 @@ namespace vmr_generator.ViewModels.ModelMatching
 						}
 						catch (Exception ex)
 						{
-							ErrorMessage = String.Format(_resourceManager.GetString("ReceiveMessageExceptionMessage") ?? "", ex.Message);
+							IsConnected = false;
+
+							// This happens when the sim is closed
+							if (ex.HResult == -1073741648)
+							{
+								Debug.WriteLine("Lost connection to the simulator.");
+							}
+							else
+							{
+								ErrorMessage = String.Format(_resourceManager.GetString("ReceiveMessageExceptionMessage") ?? "", ex.Message);
+							}
 						}
 
 						handled = true;
