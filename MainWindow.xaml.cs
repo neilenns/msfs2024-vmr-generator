@@ -14,7 +14,6 @@ namespace vmr_generator
     {
         private readonly ModelMatchingViewModel _modelMatchingViewModel;
         private HwndSource _hwndSource;
-        private IntPtr _hwnd;
 
         public MainWindow()
         {
@@ -22,7 +21,8 @@ namespace vmr_generator
 
             _modelMatchingViewModel = new ModelMatchingViewModel
             {
-                MessageBoxService = MessageBoxService.Instance
+                MessageBoxService = MessageBoxService.Instance,
+                SaveDialogService = SaveDialogService.Instance
             };
             DataContext = _modelMatchingViewModel;
         }
@@ -33,8 +33,7 @@ namespace vmr_generator
 
             _hwndSource = (HwndSource)PresentationSource.FromVisual(this);
             _hwndSource.AddHook(_modelMatchingViewModel.HandleWindowsEvent);
-            _hwnd = new WindowInteropHelper(this).Handle;
-
+            _modelMatchingViewModel.WindowHandle = new WindowInteropHelper(this).Handle;
         }
 
         protected override void OnClosed(EventArgs e)
@@ -46,33 +45,6 @@ namespace vmr_generator
             }
 
             base.OnClosed(e);
-        }
-        private void btnConnect_Click(object sender, RoutedEventArgs e)
-        {
-            _modelMatchingViewModel.ConnectToSim(_hwnd);
-        }
-
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            var saveFileDialog = new SaveFileDialog
-            {
-                Filter = "Model Matching Rule Sets (*.vmr)|*.vmr|All Files (*.*)|*.*",
-                Title = "Save model matching file",
-                FileName = "MSFS2024.vmr"
-            };
-
-            bool result = saveFileDialog.ShowDialog() ?? false;
-            if (!result)
-            {
-                return;
-            }
-
-            _modelMatchingViewModel.ToXml(saveFileDialog.FileName);
-        }
-
-        private void btnGetAircraft_Click(object sender, RoutedEventArgs e)
-        {
-            _modelMatchingViewModel.GetLiveries();
         }
     }
 }
