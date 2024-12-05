@@ -4,14 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:vmr_generator"
-        xmlns:ViewModels="clr-namespace:vmr_generator.ViewModels" x:Class="vmr_generator.MainWindow"
+        xmlns:MMVM="clr-namespace:vmr_generator.ViewModels.ModelMatching" x:Class="vmr_generator.MainWindow"
         mc:Ignorable="d"
         Title="MSFS2024 model matching exporter" Height="450" Width="800">
     <Window.Resources>
         <local:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </Window.Resources>
     <Window.DataContext>
-        <ViewModels:ModelMatchingViewModel/>
+        <MMVM:ModelMatchingViewModel/>
     </Window.DataContext>
     <Grid>
         <Button x:Name="btnConnect" Content="Connect" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsEnabled="{Binding IsConnected, Converter={StaticResource InverseBooleanConverter}}" Click="btnConnect_Click"/>
