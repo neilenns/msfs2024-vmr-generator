@@ -11,6 +11,10 @@ on:
 env:
   VERSION: "0.0.${{ github.event.number }}.${{ github.run_number }}"
 
+defaults:
+  run:
+    shell: pwsh
+
 jobs:
   build:
     name: "CI build"
@@ -30,7 +34,7 @@ jobs:
 
       - name: Build the ClickOnce installer
         run: |
-          dotnet publish -c Release \
-            -p:Version=${{ env.VERSION }} \
-            -p:ApplicationVersion=${{ env.VERSION }} \
+          dotnet publish -c Release `
+            -p:Version=${{ env.VERSION }} `
+            -p:ApplicationVersion=${{ env.VERSION }} `
             -p:PublishProfile=Properties/PublishProfiles/ClickOnceProfile.pubxml

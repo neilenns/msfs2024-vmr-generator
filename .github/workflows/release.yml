@@ -4,6 +4,10 @@ on:
   release:
     types: [created]
 
+defaults:
+  run:
+    shell: pwsh
+
 jobs:
   build:
     name: "Release build"
@@ -27,9 +31,9 @@ jobs:
 
       - name: Build the ClickOnce installer
         run: |
-          dotnet publish -c Release \
-            -p:Version=${{ steps.get_version.outputs.version-without-v }}.0 \
-            -p:ApplicationVersion=${{ steps.get_version.outputs.version-without-v }}.0 \
+          dotnet publish -c Release 1
+            -p:Version=${{ steps.get_version.outputs.version-without-v }}.0 1
+            -p:ApplicationVersion=${{ steps.get_version.outputs.version-without-v }}.0 1
             -p:PublishProfile=Properties/PublishProfiles/ClickOnceProfile.pubxml
 
       - name: Upload release assets
