@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Windows.Input;
 using System.Xml.Serialization;
 using vmr_generator.Interfaces;
 
@@ -90,7 +91,10 @@ namespace vmr_generator.ViewModels.ModelMatching
             Debug.WriteLine($"Saved to {fileName}");
         }
 
-        protected virtual void OnPropertyChanged(string propertyName) =>
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            CommandManager.InvalidateRequerySuggested(); // Refresh CanExecute for commands
+        }
     }
 }

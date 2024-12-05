@@ -14,51 +14,23 @@ namespace vmr_generator.ViewModels.ModelMatching
 			GetInputEvents
 		}
 
-		const int WM_USER_SIMCONNECT = 0x0402;
-		SimConnect? _simConnect;
+		private SimConnect? _simConnect;
 
+		// This gets initialized in ConnectCommand.cs.
 		/// <summary>
-		/// Opens a connection to the simulator.
+		/// The connection to the simulator.
 		/// </summary>
-		/// <param name="handle">The window handle of the app</param>
-		public void ConnectToSim()
+		public SimConnect? SimConnect
 		{
-			if (IsConnected || WindowHandle == IntPtr.Zero)
+			get => _simConnect;
+			set
 			{
-				return;
+				if (_simConnect != value)
+				{
+					_simConnect = value;
+					OnPropertyChanged(nameof(SimConnect));
+				}
 			}
-
-			try
-			{
-				_simConnect = new SimConnect("WMR Generator", WindowHandle, WM_USER_SIMCONNECT, null, 0);
-				_simConnect.OnRecvOpen += SimConnect_OnRecvOpen;
-				_simConnect.OnRecvQuit += SimConnect_OnRecvQuit;
-				_simConnect.OnRecvException += SimConnect_OnRecvException;
-				_simConnect.OnRecvEnumerateInputEvents += SimConnect_OnRecvEnumerateInputEvents;
-			}
-			catch (COMException ex)
-			{
-				ErrorMessage = $"Error connecting to simulator: {ex.Message}";
-			}
-		}
-
-		public bool CanConnectToSim()
-		{
-			return !(IsConnected || WindowHandle == IntPtr.Zero);
-		}
-
-		/// <summary>
-		/// Sends a request to the sim for the list of liveries. This is an async process.
-		/// Items will be added to the Liveries property as they are received.
-		/// </summary>
-		public void GetLiveries()
-		{
-			if (!IsConnected || _simConnect == null)
-			{
-				return;
-			}
-
-			_simConnect.EnumerateInputEvents(RequestID.GetInputEvents);
 		}
 
 		/// <summary>
@@ -94,30 +66,6 @@ namespace vmr_generator.ViewModels.ModelMatching
 		}
 
 		/// <summary>
-		/// Handles receiving input events from the simulator.
-		/// </summary>
-		/// <param name="sender">Sender of the exception</param>
-		/// <param name="data">SimConnect additional details</param>
-		private void SimConnect_OnRecvEnumerateInputEvents(SimConnect sender, SIMCONNECT_RECV_ENUMERATE_INPUT_EVENTS data)
-		{
-			List<Livery> liveriesToAdd = [];
-
-			foreach (object item in data.rgData)
-			{
-				if (item is SIMCONNECT_INPUT_EVENT_DESCRIPTOR descriptor)
-				{
-					liveriesToAdd.Add(new Livery()
-					{
-						ModelName = descriptor.Name,
-						TypeCode = descriptor.Hash.ToString(),
-					});
-				}
-			}
-
-			this.Liveries.AddRange(liveriesToAdd);
-		}
-
-		/// <summary>
 		/// Looks for SimConnect specific messages from Win32 and makes the SimConnect library process them.
 		/// </summary>
 		/// <param name="message">The message to process</param>
@@ -130,7 +78,7 @@ namespace vmr_generator.ViewModels.ModelMatching
 			{
 				case WM_USER_SIMCONNECT:
 					{
-						if (_simConnect == null)
+						if (SimConnect == null)
 						{
 							handled = true;
 							return IntPtr.Zero;
@@ -138,7 +86,7 @@ namespace vmr_generator.ViewModels.ModelMatching
 
 						try
 						{
-							this._simConnect.ReceiveMessage();
+							SimConnect.ReceiveMessage();
 						}
 						catch (Exception ex)
 						{
