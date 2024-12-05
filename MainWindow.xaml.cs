@@ -79,5 +79,10 @@ namespace vmr_generator
 
             this.modelMatchingViewModel.ToXml(saveFileDialog.FileName);
         }
+
+        private void btnGetAircraft_Click(object sender, RoutedEventArgs e)
+        {
+            this.modelMatchingViewModel.GetLiveries();
+        }
     }
 }
