@@ -13,19 +13,26 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: Get version
+        id: get_version
+        uses: battila7/get-version-action@v2
+
       - name: Set up .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: "9.0.x"
 
       - name: Build the application
         run: dotnet build vmr-generator.sln --configuration Release
 
-      - name: Zip the build output
+      - name: Build the ClickOnce installer
         run: |
-          Compress-Archive -Path ./bin/Release/net9.0-windows/* -DestinationPath ./release.zip
+          dotnet publish -c Release \
+            -p:Version=${{ steps.get_version.outputs.version-without-v }}.0 \
+            -p:ApplicationVersion=${{ steps.get_version.outputs.version-without-v }}.0 \
+            -p:PublishProfile=Properties/PublishProfiles/ClickOnceProfile.pubxml
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v1
         with:
-          files: ./release.zip
+          files: ./publish/setup.exe

@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+env:
+  VERSION: "0.0.${{ github.event.number }}.${{ github.run_number }}"
+
 jobs:
   build:
     name: "CI build"
@@ -20,7 +23,14 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: "9.0.x"
 
       - name: Build the application
         run: dotnet build vmr-generator.sln --configuration Release
+
+      - name: Build the ClickOnce installer
+        run: |
+          dotnet publish -c Release \
+            -p:Version=${{ env.VERSION }} \
+            -p:ApplicationVersion=${{ env.VERSION }} \
+            -p:PublishProfile=Properties/PublishProfiles/ClickOnceProfile.pubxml
