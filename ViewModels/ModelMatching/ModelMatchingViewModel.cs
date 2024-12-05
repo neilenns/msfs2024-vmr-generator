@@ -76,12 +76,6 @@ namespace vmr_generator.ViewModels.ModelMatching
 
         public ModelMatchingViewModel()
         {
-            Liveries.Add(new Livery()
-            {
-                ModelName = "Hello",
-                TypeCode = "B172"
-            }
-            );
         }
 
         /// <summary>
