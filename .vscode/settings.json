@@ -11,5 +11,9 @@
     "*.resx": "${capture}.Designer.cs",
     "*.settings": "${capture}.Designer.cs"
   },
-  "explorer.fileNesting.enabled": true
+  "explorer.fileNesting.enabled": true,
+  "[csharp]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  }
 }

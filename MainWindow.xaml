@@ -4,21 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:vmr_generator"
-        xmlns:MMVM="clr-namespace:vmr_generator.ViewModels.ModelMatching" x:Class="vmr_generator.MainWindow"
-        mc:Ignorable="d"
-        Title="MSFS2024 model matching exporter" Height="450" Width="800">
-    <Window.DataContext>
-        <MMVM:ModelMatchingViewModel/>
-    </Window.DataContext>
+        xmlns:properties="clr-namespace:vmr_generator.Properties" 
+        xmlns:modelmatching="clr-namespace:vmr_generator.ViewModels.ModelMatching" 
+        d:DataContext="{d:DesignInstance Type=modelmatching:ModelMatchingViewModel}"
+    mc:Ignorable="d"
+        x:Class="vmr_generator.MainWindow"
+        Title="{x:Static properties:Resources.MainWindowTitle}" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnConnect" Content="Connect" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Command="{Binding ConnectCommand}"/>
-        <Button x:Name="btnGetAircraft" Content="Get aircraft" HorizontalAlignment="Left" Margin="63,10,0,0" VerticalAlignment="Top" Command="{Binding GetLiveriesCommand}"/>
-        <Button x:Name="btnSave" Content="Save..." HorizontalAlignment="Left" Margin="131,10,0,0" VerticalAlignment="Top" Command="{Binding SaveLiveriesCommand}"/>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding Liveries}" Margin="10,35,10,10" Grid.ColumnSpan="2" AutoGenerateColumns="False">
+        <Button x:Name="btnGetAircraft" Content="{x:Static properties:Resources.GetAircraftButtonLabel}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Command="{Binding GetLiveriesCommand}"/>
+        <Button x:Name="btnSave" Content="{x:Static properties:Resources.SaveButtonLabel}" HorizontalAlignment="Left" Margin="78,10,0,0" VerticalAlignment="Top" Command="{Binding SaveLiveriesCommand}" RenderTransformOrigin="-0.856,0.538"/>
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding Liveries}" Margin="10,35,10,25" AutoGenerateColumns="False" HeadersVisibility="Column">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Model name" Binding="{Binding ModelName}"/>
-                <DataGridTextColumn Header="Type code" Binding="{Binding TypeCode}"/>
+                <DataGridTextColumn Header="{x:Static properties:Resources.DataGridModelNameHeader}" Binding="{Binding ModelName}"/>
+                <DataGridTextColumn Header="{x:Static properties:Resources.DataGridTypeCodeHeader}" Binding="{Binding TypeCode}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <StatusBar VerticalAlignment="Bottom">
+            <StatusBarItem>
+                <TextBlock x:Name="WaitingTextBlock" Text="{Binding SimConnectedStateMessage}"/>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>

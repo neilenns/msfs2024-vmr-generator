@@ -1,6 +1,5 @@
 ﻿#nullable enable
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -9,12 +8,24 @@ using System.Xml.Serialization;
 using vmr_generator.Interfaces;
 using vmr_generator.Models;
 using vmr_generator.Helpers;
+using System.Timers;
+using System.Resources;
 
 namespace vmr_generator.ViewModels.ModelMatching
 {
     [XmlRoot("ModelMatchRuleSet")]
     public partial class ModelMatchingViewModel : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Provides localized strings for various properties in the view model.
+        /// </summary>
+        private ResourceManager _resourceManager;
+
+        /// <summary>
+        /// Timer that polls to see if the simulator is running.
+        /// </summary>
+        private Timer _checkForSimTimer;
+
         /// <summary>
         /// Provides access to a message box to display information to the user.
         /// </summary>
@@ -48,7 +59,7 @@ namespace vmr_generator.ViewModels.ModelMatching
             {
                 _errorMessage = value;
                 Debug.WriteLine(value);
-                MessageBoxService?.ShowError(value, "Error");
+                MessageBoxService?.ShowError(value, _resourceManager.GetString("MessageBoxErrorTitle"));
                 OnPropertyChanged(nameof(ErrorMessage));
             }
         }
@@ -71,12 +82,67 @@ namespace vmr_generator.ViewModels.ModelMatching
                 {
                     _isConnected = value;
                     OnPropertyChanged(nameof(IsConnected));
+                    OnPropertyChanged(nameof(SimConnectedStateMessage));
+                }
+            }
+        }
+
+        private bool _isSimRunning;
+        /// <summary>
+        /// True if Microsoft Flight Simulator 2024 is running.
+        /// </summary>
+        public bool IsSimRunning
+        {
+            get => _isSimRunning;
+            set
+            {
+                if (_isSimRunning != value)
+                {
+                    _isSimRunning = value;
+
+                    OnPropertyChanged(nameof(IsSimRunning));
+                }
+
+                // This ensures SimConnect keeps trying to connect to the sim when it is
+                // running but a connection hasn't been established. This happens when
+                // the sim first launches, but isn't ready to accept incoming SimConnect
+                // requests.
+                if (value && !IsConnected)
+                {
+                    ConnectToSim();
+                }
+            }
+        }
+
+        public string SimConnectedStateMessage
+        {
+            get
+            {
+                if (IsConnected)
+                {
+                    return _resourceManager.GetString("SimConnectedMessage") ?? "";
+                }
+                else
+                {
+                    return _resourceManager.GetString("WaitingForSimulatorMessage") ?? "";
                 }
             }
         }
 
         public ModelMatchingViewModel()
         {
+
+            _resourceManager = new ResourceManager("vmr_generator.Properties.Resources", typeof(ModelMatchingViewModel).Assembly);
+
+            // Set up a timer to check for the sim every second.
+            _checkForSimTimer = new Timer(1000);
+            _checkForSimTimer.Elapsed += CheckForSim;
+            _checkForSimTimer.Start();
+        }
+
+        private void CheckForSim(object? sender, ElapsedEventArgs e)
+        {
+            IsSimRunning = Process.GetProcessesByName("flightsimulator2024").Length > 0;
         }
 
         /// <summary>
