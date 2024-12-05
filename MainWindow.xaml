@@ -13,7 +13,7 @@
     <Grid>
         <Button x:Name="btnGetAircraft" Content="{x:Static properties:Resources.GetAircraftButtonLabel}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Command="{Binding GetLiveriesCommand}"/>
         <Button x:Name="btnSave" Content="{x:Static properties:Resources.SaveButtonLabel}" HorizontalAlignment="Left" Margin="78,10,0,0" VerticalAlignment="Top" Command="{Binding SaveLiveriesCommand}" RenderTransformOrigin="-0.856,0.538"/>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding Liveries}" Margin="10,35,10,25" AutoGenerateColumns="False">
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding Liveries}" Margin="10,35,10,25" AutoGenerateColumns="False" HeadersVisibility="Column">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridModelNameHeader}" Binding="{Binding ModelName}"/>
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridTypeCodeHeader}" Binding="{Binding TypeCode}"/>
