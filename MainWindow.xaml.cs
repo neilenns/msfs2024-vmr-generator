@@ -14,7 +14,6 @@ namespace vmr_generator
     {
         private readonly ModelMatchingViewModel _modelMatchingViewModel;
         private HwndSource _hwndSource;
-        private IntPtr _hwnd;
 
         public MainWindow()
         {
