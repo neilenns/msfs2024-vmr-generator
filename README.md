@@ -8,7 +8,7 @@ Creates a VATSIM model matching file for MSFS2024 aircraft and livery.
 
 ## Developer notes
 
-The vast majority of this app is boilerplate WPF with a single MVVM (`ModelMatchingViewModel`) commands. The interesting SimConnect code is in the following locations:
+The vast majority of this app is boilerplate WPF with a single MVVM (`ModelMatchingViewModel`) and a few commands. The interesting SimConnect code is in the following locations:
 
 - `ViewModels\ModelMatching\ConnectCommand.cs`: Methods for opening the connection to the simulator with SimConnect.
 - `ViewModels\ModelMatching\GetLiveriesCommand.cs`: Methods for retrieving the list of aircraft and liveries from the simulator.
