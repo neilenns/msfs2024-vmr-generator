@@ -1,5 +1,5 @@
-using System;
 using System.Windows.Input;
+using vmr_generator.Helpers;
 
 namespace vmr_generator.ViewModels.ModelMatching
 {

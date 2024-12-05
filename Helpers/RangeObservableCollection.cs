@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace vmr_generator
+namespace vmr_generator.Helpers
 {
     /// <summary>
     /// Implements an observable collection that supports adding a range of objects without firing

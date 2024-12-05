@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Xml.Serialization;
 using vmr_generator.Interfaces;
 using vmr_generator.Models;
+using vmr_generator.Helpers;
 
 namespace vmr_generator.ViewModels.ModelMatching
 {

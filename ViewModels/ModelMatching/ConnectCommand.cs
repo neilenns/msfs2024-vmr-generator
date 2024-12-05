@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
 using Microsoft.FlightSimulator.SimConnect;
+using vmr_generator.Helpers;
 
 // This method of adding commands to view models comes from
 // https://learn.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#id0090051
