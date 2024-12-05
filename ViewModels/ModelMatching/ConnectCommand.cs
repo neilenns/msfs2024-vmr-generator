@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Input;
 using Microsoft.FlightSimulator.SimConnect;
@@ -25,7 +26,7 @@ namespace vmr_generator.ViewModels.ModelMatching
 		/// <param name="handle">The window handle of the app</param>
 		public void ConnectToSim()
 		{
-			if (IsConnected || WindowHandle == IntPtr.Zero)
+			if (!IsSimRunning || IsConnected || WindowHandle == IntPtr.Zero)
 			{
 				return;
 			}
@@ -40,7 +41,15 @@ namespace vmr_generator.ViewModels.ModelMatching
 			}
 			catch (COMException ex)
 			{
-				ErrorMessage = $"Error connecting to simulator: {ex.Message}";
+				// This is just when the sim isn't running, no need to warn the user just log
+				// it to debug and return.
+				if (ex.HResult == -2147467259)
+				{
+					Debug.WriteLine($"Error connecting to the simulator, it probably isn't running: {ex.Message}");
+					return;
+				}
+
+				ErrorMessage = String.Format(_resourceManager.GetString("SimConnectionErrror"), ex.Message);
 			}
 		}
 

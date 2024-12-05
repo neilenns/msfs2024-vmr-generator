@@ -1,8 +1,6 @@
 #nullable enable
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using Microsoft.FlightSimulator.SimConnect;
 
 namespace vmr_generator.ViewModels.ModelMatching
@@ -40,7 +38,7 @@ namespace vmr_generator.ViewModels.ModelMatching
 		/// <param name="data">Details of the exception</param>
 		private void SimConnect_OnRecvException(SimConnect sender, SIMCONNECT_RECV_EXCEPTION data)
 		{
-			ErrorMessage = $"Error receiving data from simulator: {data.dwException}";
+			ErrorMessage = String.Format(_resourceManager.GetString("OnRecvExceptionMessage") ?? "", data.dwException);
 		}
 
 		/// <summary>
@@ -90,7 +88,7 @@ namespace vmr_generator.ViewModels.ModelMatching
 						}
 						catch (Exception ex)
 						{
-							ErrorMessage = $"Error receiving data from simulator: {ex.Message}";
+							ErrorMessage = String.Format(_resourceManager.GetString("ReceiveMessageExceptionMessage") ?? "", ex.Message);
 						}
 
 						handled = true;
