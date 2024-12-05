@@ -1,3 +1,15 @@
 {
-  "dotnet.preferCSharpExtension": true
+  "dotnet.preferCSharpExtension": true,
+  "files.exclude": {
+    ".vs/": true,
+    "bin/": true,
+    "obj/": true
+  },
+  "explorer.fileNesting.patterns": {
+    "*.xaml": "${capture}.xaml.cs",
+    "*.sln": "${capture}.csproj, ${capture}.csproj.user",
+    "*.resx": "${capture}.Designer.cs",
+    "*.settings": "${capture}.Designer.cs"
+  },
+  "explorer.fileNesting.enabled": true
 }
