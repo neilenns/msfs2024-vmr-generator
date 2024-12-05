@@ -1,23 +1,9 @@
-﻿using Microsoft.FlightSimulator.SimConnect;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using vmr_generator.ViewModels;
+using vmr_generator.Services;
+using vmr_generator.ViewModels.ModelMatching;
 
 namespace vmr_generator
 {
@@ -26,7 +12,7 @@ namespace vmr_generator
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly ModelMatchingViewModel modelMatchingViewModel = new();
+        private readonly ModelMatchingViewModel _modelMatchingViewModel;
         private HwndSource _hwndSource;
         private IntPtr _hwnd;
 
@@ -34,7 +20,11 @@ namespace vmr_generator
         {
             InitializeComponent();
 
-            this.DataContext = modelMatchingViewModel;
+            _modelMatchingViewModel = new ModelMatchingViewModel
+            {
+                MessageBoxService = MessageBoxService.Instance
+            };
+            DataContext = _modelMatchingViewModel;
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -42,7 +32,7 @@ namespace vmr_generator
             base.OnSourceInitialized(e);
 
             _hwndSource = (HwndSource)PresentationSource.FromVisual(this);
-            _hwndSource.AddHook(modelMatchingViewModel.HandleWindowsEvent);
+            _hwndSource.AddHook(_modelMatchingViewModel.HandleWindowsEvent);
             _hwnd = new WindowInteropHelper(this).Handle;
 
         }
@@ -51,7 +41,7 @@ namespace vmr_generator
         {
             if (_hwndSource != null)
             {
-                _hwndSource.RemoveHook(modelMatchingViewModel.HandleWindowsEvent);
+                _hwndSource.RemoveHook(_modelMatchingViewModel.HandleWindowsEvent);
                 _hwndSource = null;
             }
 
@@ -59,7 +49,7 @@ namespace vmr_generator
         }
         private void btnConnect_Click(object sender, RoutedEventArgs e)
         {
-            this.modelMatchingViewModel.ConnectToSim(_hwnd);
+            _modelMatchingViewModel.ConnectToSim(_hwnd);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -77,12 +67,12 @@ namespace vmr_generator
                 return;
             }
 
-            this.modelMatchingViewModel.ToXml(saveFileDialog.FileName);
+            _modelMatchingViewModel.ToXml(saveFileDialog.FileName);
         }
 
         private void btnGetAircraft_Click(object sender, RoutedEventArgs e)
         {
-            this.modelMatchingViewModel.GetLiveries();
+            _modelMatchingViewModel.GetLiveries();
         }
     }
 }
