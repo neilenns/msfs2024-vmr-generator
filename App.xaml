@@ -1,9 +1,6 @@
-﻿<Application x:Class="vmr_generator.App"
+﻿<Application
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:vmr_generator"
-             StartupUri="MainWindow.xaml">
-    <Application.Resources>
-         
-    </Application.Resources>
-</Application>
+             x:Class="vmr_generator.App"
+             StartupUri="MainWindow.xaml"/>
