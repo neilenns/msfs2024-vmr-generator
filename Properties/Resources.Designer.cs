@@ -61,6 +61,24 @@ namespace vmr_generator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Callsign prefix.
+        /// </summary>
+        public static string DataGridCallsignPrefixHeader {
+            get {
+                return ResourceManager.GetString("DataGridCallsignPrefixHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flight numbers.
+        /// </summary>
+        public static string DataGridFlightNumberRangeHeader {
+            get {
+                return ResourceManager.GetString("DataGridFlightNumberRangeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Model name.
         /// </summary>
         public static string DataGridModelNameHeader {
