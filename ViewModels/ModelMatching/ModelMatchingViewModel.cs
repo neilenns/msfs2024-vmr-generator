@@ -102,6 +102,9 @@ namespace vmr_generator.ViewModels.ModelMatching
             get => _isConnected;
             set
             {
+                // Only poll for a sim connection when the sim isn't connected.
+                _checkForSimTimer.Enabled = !value;
+
                 if (_isConnected != value)
                 {
                     _isConnected = value;
