@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vmr-generator", "vmr-generator.csproj", "{5EA3F399-69CC-4205-BF3E-076B4583FC71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vmr-generator", "src\vmr-generator.csproj", "{D36CE35B-E5D4-464E-88A3-ED1E7EF59B1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vmr-generator.tests", "tests\vmr-generator.tests.csproj", "{FD657EFD-9B19-440C-9098-DA19F7D03FAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5EA3F399-69CC-4205-BF3E-076B4583FC71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5EA3F399-69CC-4205-BF3E-076B4583FC71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5EA3F399-69CC-4205-BF3E-076B4583FC71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5EA3F399-69CC-4205-BF3E-076B4583FC71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D36CE35B-E5D4-464E-88A3-ED1E7EF59B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D36CE35B-E5D4-464E-88A3-ED1E7EF59B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D36CE35B-E5D4-464E-88A3-ED1E7EF59B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D36CE35B-E5D4-464E-88A3-ED1E7EF59B1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD657EFD-9B19-440C-9098-DA19F7D03FAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD657EFD-9B19-440C-9098-DA19F7D03FAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD657EFD-9B19-440C-9098-DA19F7D03FAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD657EFD-9B19-440C-9098-DA19F7D03FAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
