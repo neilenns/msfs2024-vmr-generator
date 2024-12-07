@@ -10,6 +10,8 @@ using vmr_generator.Models;
 using vmr_generator.Helpers;
 using System.Timers;
 using System.Resources;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace vmr_generator.ViewModels.ModelMatching
 {
@@ -68,6 +70,28 @@ namespace vmr_generator.ViewModels.ModelMatching
         /// The list of all liveries retrieved from MSFS2024.
         /// </summary>
         public RangeObservableCollection<Livery> Liveries { get; set; } = [];
+
+        /// <summary>
+        /// Returns a list of Liveries flattened into single entries by CallsignPrefix and TypeCode.
+        /// Multiple entries with the same CallsignPrefix and TypeCode are grouped into a single entry
+        /// with the ModelName values separated by two slashes (//).
+        /// 
+        /// This list can then be directly written to XML to be in the correct format for a vPilot model
+        /// matching file.
+        /// </summary>
+        public List<Livery> FlattenedList
+        {
+            get
+            {
+                return Liveries.GroupBy(l => new { l.CallsignPrefix, l.TypeCode, l.FlightNumberRange }).Select(g => new Livery
+                {
+                    CallsignPrefix = g.Key.CallsignPrefix,
+                    TypeCode = g.Key.TypeCode,
+                    FlightNumberRange = g.Key.FlightNumberRange,
+                    ModelName = string.Join("//", g.Select(l => l.ModelName))
+                }).ToList();
+            }
+        }
 
         private bool _isConnected;
         /// <summary>
@@ -140,6 +164,61 @@ namespace vmr_generator.ViewModels.ModelMatching
             _checkForSimTimer.Start();
         }
 
+        /// <summary>
+        /// Adds a bunch of sample data to the list of liveries for testing purposes.
+        /// </summary>
+        private void AddSampleData()
+        {
+            Liveries.AddRange([
+                // <ModelMatchRule CallsignPrefix="AIB" TypeCode="CL60" ModelName="FSLTL_GA_C25C_ZZZ//FSLTL_GA_C25C_M-MIKE//FSLTL_GA_C25C_PS-CSF" /> 
+                new Livery() {
+                    CallsignPrefix = "AIB",
+                    ModelName = "FSLTL_GA_C25C_ZZZ",
+                    TypeCode = "CL60",
+                },
+                new Livery() {
+                    CallsignPrefix = "AIB",
+                    ModelName = "FSLTL_GA_C25C_M-MIKE",
+                    TypeCode = "CL60",
+                },
+                new Livery() {
+                    CallsignPrefix = "AIB",
+                    ModelName = "FSLTL_GA_C25C_PS-CSF",
+                    TypeCode = "CL60",
+                },
+                // <ModelMatchRule CallsignPrefix="AIB" TypeCode="CRJX" ModelName="FSLTL_CRJ7_ZZZZ" /> 
+                new Livery() {
+                    CallsignPrefix = "AIB",
+                    ModelName = "FSLTL_CRJ7_ZZZZ",
+                    TypeCode = "CRJX",
+                },
+                // <ModelMatchRule TypeCode="C172" ModelName="FSLTL_GA_C172_ZZZ" /> 
+                new Livery() {
+                    ModelName = "FSLTL_GA_C172_ZZZ",
+                    TypeCode = "C172",
+                },
+                // <ModelMatchRule CallsignPrefix="DAL" TypeCode="B739" ModelName="FSLTL_FAIB_B739_DAL-Delta_SSW//FSLTL_FAIB_B739_DAL-Delta_WL" /> 
+                new Livery() {
+                    CallsignPrefix = "DAL",
+                    ModelName = "FSLTL_FAIB_B739_DAL-Delta_SSW",
+                    TypeCode = "B739",
+                },
+                new Livery() {
+                    CallsignPrefix = "DAL",
+                    ModelName = "FSLTL_FAIB_B739_DAL-Delta_WL",
+                    TypeCode = "B739",
+                },
+                // Should be standalone
+                // <ModelMatchRule CallsignPrefix="DAL" FlightNumberRange="4439-4858" TypeCode="B739" ModelName="FSLTL_FAIB_B739_DAL-Delta_WL" />
+                new Livery() {
+                    CallsignPrefix = "DAL",
+                    FlightNumberRange = "4439-4858",
+                    ModelName = "FSLTL_FAIB_B739_DAL-Delta_WL",
+                    TypeCode = "B739",
+                },
+            ]);
+        }
+
         private void CheckForSim(object? sender, ElapsedEventArgs e)
         {
             IsSimRunning = Process.GetProcessesByName("flightsimulator2024").Length > 0;
@@ -152,10 +231,10 @@ namespace vmr_generator.ViewModels.ModelMatching
         public void ToXml(string fileName)
         {
             var xmlRoot = new XmlRootAttribute("ModelMatchRuleSet");
-            var serializer = new XmlSerializer(typeof(RangeObservableCollection<Livery>), xmlRoot);
+            var serializer = new XmlSerializer(typeof(List<Livery>), xmlRoot);
 
             using var writer = new StreamWriter(fileName);
-            serializer.Serialize(writer, Liveries);
+            serializer.Serialize(writer, FlattenedList);
             Debug.WriteLine($"Saved to {fileName}");
         }
 
