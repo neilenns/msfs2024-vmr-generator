@@ -16,10 +16,13 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: "9.0.x"
 
       - name: Build the application
         run: dotnet build vmr-generator.sln --configuration Release
+
+      - name: Run tests
+        run: dotnet test vmr-generator.sln --configuration Release
 
       - name: Zip the build output
         run: |

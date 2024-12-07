@@ -1,8 +1,6 @@
 ﻿#nullable enable
-using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using System.Windows.Input;
 using System.Xml.Serialization;
 using vmr_generator.Interfaces;
@@ -10,8 +8,10 @@ using vmr_generator.Models;
 using vmr_generator.Helpers;
 using System.Timers;
 using System.Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace vmr_generator.ViewModels.ModelMatching
 {
@@ -26,7 +26,7 @@ namespace vmr_generator.ViewModels.ModelMatching
         /// <summary>
         /// Timer that polls to see if the simulator is running.
         /// </summary>
-        private Timer _checkForSimTimer;
+        private readonly System.Timers.Timer _checkForSimTimer;
 
         /// <summary>
         /// Provides access to a message box to display information to the user.
@@ -162,7 +162,7 @@ namespace vmr_generator.ViewModels.ModelMatching
             _resourceManager = new ResourceManager("vmr_generator.Properties.Resources", typeof(ModelMatchingViewModel).Assembly);
 
             // Set up a timer to check for the sim every second.
-            _checkForSimTimer = new Timer(1000);
+            _checkForSimTimer = new System.Timers.Timer(1000);
             _checkForSimTimer.Elapsed += CheckForSim;
             _checkForSimTimer.Start();
         }
@@ -170,7 +170,7 @@ namespace vmr_generator.ViewModels.ModelMatching
         /// <summary>
         /// Adds a bunch of sample data to the list of liveries for testing purposes.
         /// </summary>
-        private void AddSampleData()
+        public void AddSampleData()
         {
             Liveries.AddRange([
                 // <ModelMatchRule CallsignPrefix="AIB" TypeCode="CL60" ModelName="FSLTL_GA_C25C_ZZZ//FSLTL_GA_C25C_M-MIKE//FSLTL_GA_C25C_PS-CSF" /> 
