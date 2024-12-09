@@ -1,7 +1,7 @@
 using System.Windows;
-using vmr_generator.Interfaces;
+using VmrGenerator.Interfaces;
 
-namespace vmr_generator.Services
+namespace VmrGenerator.Services
 {
     public class MessageBoxService : IMessageBoxService
     {

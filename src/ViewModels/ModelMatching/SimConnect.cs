@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.FlightSimulator.SimConnect;
 
-namespace vmr_generator.ViewModels.ModelMatching
+namespace VmrGenerator.ViewModels.ModelMatching
 {
     public partial class ModelMatchingViewModel
     {

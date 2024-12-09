@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace vmr_generator.Models
+namespace VmrGenerator.Models
 {
     [XmlType("ModelMatchRule")]
     public class Livery

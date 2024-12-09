@@ -1,4 +1,4 @@
-namespace vmr_generator.Interfaces
+namespace VmrGenerator.Interfaces
 {
     /// <summary>
     /// Provides an interface to show a message to the user.

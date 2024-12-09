@@ -3,9 +3,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using System.Xml.Serialization;
-using vmr_generator.Interfaces;
-using vmr_generator.Models;
-using vmr_generator.Helpers;
+using VmrGenerator.Interfaces;
+using VmrGenerator.Models;
+using VmrGenerator.Helpers;
 using System.Timers;
 using System.Resources;
 using System;
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 
-namespace vmr_generator.ViewModels.ModelMatching
+namespace VmrGenerator.ViewModels.ModelMatching
 {
     [XmlRoot("ModelMatchRuleSet")]
     public partial class ModelMatchingViewModel : INotifyPropertyChanged
@@ -159,7 +159,7 @@ namespace vmr_generator.ViewModels.ModelMatching
         public ModelMatchingViewModel()
         {
 
-            _resourceManager = new ResourceManager("vmr_generator.Properties.Resources", typeof(ModelMatchingViewModel).Assembly);
+            _resourceManager = new ResourceManager("VmrGenerator.Properties.Resources", typeof(ModelMatchingViewModel).Assembly);
 
             // Set up a timer to check for the sim every second.
             _checkForSimTimer = new System.Timers.Timer(1000);

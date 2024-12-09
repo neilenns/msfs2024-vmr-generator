@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace vmr_generator.Properties
+namespace VmrGenerator.Properties
 {
 
 

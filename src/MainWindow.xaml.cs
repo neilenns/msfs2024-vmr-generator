@@ -1,14 +1,13 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Windows;
-using System.Windows.Interop;
-using vmr_generator.Services;
-using vmr_generator.ViewModels.ModelMatching;
-
-namespace vmr_generator
+﻿namespace VmrGenerator
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Interop;
+    using VmrGenerator.Services;
+    using VmrGenerator.ViewModels.ModelMatching;
+
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainWindow.xaml.
     /// </summary>
     public partial class MainWindow : Window
     {

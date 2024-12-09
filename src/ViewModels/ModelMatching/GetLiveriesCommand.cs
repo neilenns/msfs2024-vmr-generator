@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using Microsoft.FlightSimulator.SimConnect;
-using vmr_generator.Models;
-using vmr_generator.Helpers;
+using VmrGenerator.Models;
+using VmrGenerator.Helpers;
 
-namespace vmr_generator.ViewModels.ModelMatching
+namespace VmrGenerator.ViewModels.ModelMatching
 {
     public partial class ModelMatchingViewModel
     {

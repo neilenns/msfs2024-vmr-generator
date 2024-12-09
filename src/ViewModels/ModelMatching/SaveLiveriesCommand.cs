@@ -1,7 +1,7 @@
 using System.Windows.Input;
-using vmr_generator.Helpers;
+using VmrGenerator.Helpers;
 
-namespace vmr_generator.ViewModels.ModelMatching
+namespace VmrGenerator.ViewModels.ModelMatching
 {
     public partial class ModelMatchingViewModel
     {
