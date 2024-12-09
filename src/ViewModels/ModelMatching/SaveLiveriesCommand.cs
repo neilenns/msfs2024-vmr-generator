@@ -1,31 +1,44 @@
-using System.Windows.Input;
-using VmrGenerator.Helpers;
-
 namespace VmrGenerator.ViewModels.ModelMatching
 {
+    using System.Windows.Input;
+    using VmrGenerator.Helpers;
+
+    /// <summary>
+    /// Implements the SaveLiveries command for the view model.
+    /// </summary>
     public partial class ModelMatchingViewModel
     {
-        RelayCommand _saveLiveriesCommand;
+        private RelayCommand saveLiveriesCommand;
 
-        public ICommand SaveLiveriesCommand => _saveLiveriesCommand ??= new RelayCommand(param => SaveLiveries(), param => CanSaveLiveries());
+        /// <summary>
+        /// Gets the command.
+        /// </summary>
+        public ICommand SaveLiveriesCommand => this.saveLiveriesCommand ??= new RelayCommand(
+            param => this.SaveLiveries(),
+            param => this.CanSaveLiveries());
 
+        /// <summary>
+        /// Saves the liveries to a file.
+        /// </summary>
         public void SaveLiveries()
         {
-            var fileName = SaveDialogService.ShowDialog();
+            var fileName = this.SaveDialogService.ShowDialog();
 
             if (string.IsNullOrEmpty(fileName))
             {
                 return;
             }
 
-            ToXml(fileName);
+            this.ToXml(fileName);
         }
 
+        /// <summary>
+        /// Gets whether the save liveries command is available.
+        /// </summary>
+        /// <returns>True if the command is available, false otherwise.</returns>
         public bool CanSaveLiveries()
         {
-            return Liveries.Count > 0;
+            return this.Liveries.Count > 0;
         }
     }
 }
-
-

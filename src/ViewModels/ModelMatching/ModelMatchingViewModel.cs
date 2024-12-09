@@ -1,20 +1,24 @@
 ﻿#nullable enable
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Windows.Input;
-using System.Xml.Serialization;
-using VmrGenerator.Interfaces;
-using VmrGenerator.Models;
-using VmrGenerator.Helpers;
-using System.Timers;
-using System.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
 
 namespace VmrGenerator.ViewModels.ModelMatching
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Linq;
+    using System.Resources;
+    using System.Timers;
+    using System.Windows.Input;
+    using System.Xml.Serialization;
+    using VmrGenerator.Helpers;
+    using VmrGenerator.Interfaces;
+    using VmrGenerator.Models;
+
+    /// <summary>
+    /// View model for the main window of the application.
+    /// </summary>
     [XmlRoot("ModelMatchRuleSet")]
     public partial class ModelMatchingViewModel : INotifyPropertyChanged
     {
