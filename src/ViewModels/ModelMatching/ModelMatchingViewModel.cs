@@ -1,4 +1,9 @@
-﻿#nullable enable
+﻿// <copyright file="ModelMatchingViewModel.cs" company="Neil Enns">
+// Copyright (c) Neil Enns. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+// </copyright>
+
+#nullable enable
 
 namespace VmrGenerator.ViewModels.ModelMatching
 {
