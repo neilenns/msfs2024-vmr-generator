@@ -1,9 +1,9 @@
 {
   "dotnet.preferCSharpExtension": true,
   "files.exclude": {
-    ".vs/": true,
-    "bin/": true,
-    "obj/": true
+    "**/.vs/": true,
+    "**/bin/": true,
+    "**/obj/": true
   },
   "explorer.fileNesting.patterns": {
     "*.xaml": "${capture}.xaml.cs",

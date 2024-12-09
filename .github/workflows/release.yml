@@ -19,13 +19,16 @@ jobs:
           dotnet-version: "9.0.x"
 
       - name: Build the application
-        run: dotnet build vmr-generator.sln --configuration Release
+        run: dotnet build vmr-generator.sln --configuration Release -warnaserror
 
       - name: Run tests
         run: dotnet test vmr-generator.sln --configuration Release
 
       - name: Zip the build output
         run: |
+          # Get rid of doc comment XML files, they're only generated for StyleCop validation
+          # and should not be included in the build output.
+          Remove-Item ./bin/Release/net9.0-windows/*.xml
           Compress-Archive -Path ./bin/Release/net9.0-windows/* -DestinationPath ./release.zip
 
       - name: Upload release assets

@@ -1,31 +1,49 @@
-using System.Windows.Input;
-using vmr_generator.Helpers;
+// <copyright file="SaveLiveriesCommand.cs" company="Neil Enns">
+// Copyright (c) Neil Enns. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+// </copyright>
 
-namespace vmr_generator.ViewModels.ModelMatching
+namespace VmrGenerator.ViewModels.ModelMatching
 {
-  public partial class ModelMatchingViewModel
-  {
-    RelayCommand _saveLiveriesCommand;
+    using System.Windows.Input;
+    using VmrGenerator.Helpers;
 
-    public ICommand SaveLiveriesCommand => _saveLiveriesCommand ??= new RelayCommand(param => SaveLiveries(), param => CanSaveLiveries());
-
-    public void SaveLiveries()
+    /// <summary>
+    /// Implements the SaveLiveries command for the view model.
+    /// </summary>
+    public partial class ModelMatchingViewModel
     {
-      var fileName = SaveDialogService.ShowDialog();
+        private RelayCommand saveLiveriesCommand;
 
-      if (string.IsNullOrEmpty(fileName))
-      {
-        return;
-      }
+        /// <summary>
+        /// Gets the command.
+        /// </summary>
+        public ICommand SaveLiveriesCommand => this.saveLiveriesCommand ??= new RelayCommand(
+            param => this.SaveLiveries(),
+            param => this.CanSaveLiveries());
 
-      ToXml(fileName);
+        /// <summary>
+        /// Saves the liveries to a file.
+        /// </summary>
+        public void SaveLiveries()
+        {
+            var fileName = this.SaveDialogService.ShowDialog();
+
+            if (string.IsNullOrEmpty(fileName))
+            {
+                return;
+            }
+
+            this.ToXml(fileName);
+        }
+
+        /// <summary>
+        /// Gets whether the save liveries command is available.
+        /// </summary>
+        /// <returns>True if the command is available, false otherwise.</returns>
+        public bool CanSaveLiveries()
+        {
+            return this.Liveries.Count > 0;
+        }
     }
-
-    public bool CanSaveLiveries()
-    {
-      return Liveries.Count > 0;
-    }
-  }
 }
-
-

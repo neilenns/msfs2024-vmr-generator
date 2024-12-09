@@ -3,12 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:vmr_generator"
-        xmlns:properties="clr-namespace:vmr_generator.Properties" 
-        xmlns:modelmatching="clr-namespace:vmr_generator.ViewModels.ModelMatching" 
+        xmlns:local="clr-namespace:VmrGenerator"
+        xmlns:properties="clr-namespace:VmrGenerator.Properties" 
+        xmlns:modelmatching="clr-namespace:VmrGenerator.ViewModels.ModelMatching" 
         d:DataContext="{d:DesignInstance Type=modelmatching:ModelMatchingViewModel}"
     mc:Ignorable="d"
-        x:Class="vmr_generator.MainWindow"
+        x:Class="VmrGenerator.MainWindow"
         Title="{x:Static properties:Resources.MainWindowTitle}" Height="450" Width="800">
     <Grid>
         <Button x:Name="btnGetAircraft" Content="{x:Static properties:Resources.GetAircraftButtonLabel}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Command="{Binding GetLiveriesCommand}"/>

@@ -1,10 +1,10 @@
 ﻿#nullable enable
-using vmr_generator.Interfaces;
-using vmr_generator.ViewModels.ModelMatching;
+using VmrGenerator.Interfaces;
+using VmrGenerator.ViewModels.ModelMatching;
 using Moq;
-using vmr_generator.Models;
+using VmrGenerator.Models;
 
-namespace vmr_generator.tests
+namespace VmrGenerator.tests
 {
     public class ModelMatchingViewModelTests
     {

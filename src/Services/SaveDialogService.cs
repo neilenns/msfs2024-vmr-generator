@@ -1,32 +1,41 @@
-using Microsoft.Win32;
-using vmr_generator.Interfaces;
+// <copyright file="SaveDialogService.cs" company="Neil Enns">
+// Copyright (c) Neil Enns. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+// </copyright>
 
-namespace vmr_generator.Services
+namespace VmrGenerator.Services
 {
-  public class SaveDialogService : ISaveDialogService
-  {
-    private static readonly ISaveDialogService _instance = new SaveDialogService();
-    /// <summary>
-    /// Provides an instance of the MessageBoxService.
-    /// </summary>
-    public static ISaveDialogService Instance => _instance;
+    using System;
+    using Microsoft.Win32;
+    using VmrGenerator.Interfaces;
 
     /// <summary>
-    /// Shows a Win32 save file dialog to the user and returns the file name.
+    /// Provides a Win32 FileSave dialog via the ISaveDialogService interface.
     /// </summary>
-    /// <returns>The file name if the dialog was closed successfully, or an empty string if canceled.</returns>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
-    public string ShowDialog()
+    public class SaveDialogService : ISaveDialogService
     {
-      var saveFileDialog = new SaveFileDialog
-      {
-        Filter = "Model Matching Rule Sets (*.vmr)|*.vmr|All Files (*.*)|*.*",
-        Title = "Save model matching file",
-        FileName = "MSFS2024.vmr"
-      };
+        private static readonly ISaveDialogService InstanceValue = new SaveDialogService();
 
-      bool result = saveFileDialog.ShowDialog() ?? false;
-      return result ? saveFileDialog.FileName : "";
+        /// <summary>
+        /// Gets an instance of the MessageBoxService.
+        /// </summary>
+        public static ISaveDialogService Instance => InstanceValue;
+
+        /// <summary>
+        /// Shows a Win32 save file dialog to the user and returns the file name.
+        /// </summary>
+        /// <returns>The file name if the dialog was closed successfully, or an empty string if canceled.</returns>
+        public string ShowDialog()
+        {
+            var saveFileDialog = new SaveFileDialog
+            {
+                Filter = "Model Matching Rule Sets (*.vmr)|*.vmr|All Files (*.*)|*.*",
+                Title = "Save model matching file",
+                FileName = "MSFS2024.vmr",
+            };
+
+            bool result = saveFileDialog.ShowDialog() ?? false;
+            return result ? saveFileDialog.FileName : string.Empty;
+        }
     }
-  }
 }
