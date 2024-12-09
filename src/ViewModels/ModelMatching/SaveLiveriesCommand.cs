@@ -3,29 +3,29 @@ using vmr_generator.Helpers;
 
 namespace vmr_generator.ViewModels.ModelMatching
 {
-  public partial class ModelMatchingViewModel
-  {
-    RelayCommand _saveLiveriesCommand;
-
-    public ICommand SaveLiveriesCommand => _saveLiveriesCommand ??= new RelayCommand(param => SaveLiveries(), param => CanSaveLiveries());
-
-    public void SaveLiveries()
+    public partial class ModelMatchingViewModel
     {
-      var fileName = SaveDialogService.ShowDialog();
+        RelayCommand _saveLiveriesCommand;
 
-      if (string.IsNullOrEmpty(fileName))
-      {
-        return;
-      }
+        public ICommand SaveLiveriesCommand => _saveLiveriesCommand ??= new RelayCommand(param => SaveLiveries(), param => CanSaveLiveries());
 
-      ToXml(fileName);
+        public void SaveLiveries()
+        {
+            var fileName = SaveDialogService.ShowDialog();
+
+            if (string.IsNullOrEmpty(fileName))
+            {
+                return;
+            }
+
+            ToXml(fileName);
+        }
+
+        public bool CanSaveLiveries()
+        {
+            return Liveries.Count > 0;
+        }
     }
-
-    public bool CanSaveLiveries()
-    {
-      return Liveries.Count > 0;
-    }
-  }
 }
 
 
