@@ -8,11 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VmrGenerator.Properties
-{
+namespace VmrGenerator.Properties {
     using System;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,191 +22,166 @@ namespace VmrGenerator.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources
-    {
-
+    public class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if (object.ReferenceEquals(resourceMan, null))
-                {
+        public static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VmrGenerator.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        public static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Callsign prefix.
         /// </summary>
-        public static string DataGridCallsignPrefixHeader
-        {
-            get
-            {
+        public static string DataGridCallsignPrefixHeader {
+            get {
                 return ResourceManager.GetString("DataGridCallsignPrefixHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Flight numbers.
         /// </summary>
-        public static string DataGridFlightNumberRangeHeader
-        {
-            get
-            {
+        public static string DataGridFlightNumberRangeHeader {
+            get {
                 return ResourceManager.GetString("DataGridFlightNumberRangeHeader", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liveries.
+        /// </summary>
+        public static string DataGridLabel {
+            get {
+                return ResourceManager.GetString("DataGridLabel", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Model name.
         /// </summary>
-        public static string DataGridModelNameHeader
-        {
-            get
-            {
+        public static string DataGridModelNameHeader {
+            get {
                 return ResourceManager.GetString("DataGridModelNameHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Type code.
         /// </summary>
-        public static string DataGridTypeCodeHeader
-        {
-            get
-            {
+        public static string DataGridTypeCodeHeader {
+            get {
                 return ResourceManager.GetString("DataGridTypeCodeHeader", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Get aircraft.
         /// </summary>
-        public static string GetAircraftButtonLabel
-        {
-            get
-            {
+        public static string GetAircraftButtonLabel {
+            get {
                 return ResourceManager.GetString("GetAircraftButtonLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to MSFS2024 model matching exporter.
         /// </summary>
-        public static string MainWindowTitle
-        {
-            get
-            {
+        public static string MainWindowTitle {
+            get {
                 return ResourceManager.GetString("MainWindowTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
-        public static string MessageBoxErrorTitle
-        {
-            get
-            {
+        public static string MessageBoxErrorTitle {
+            get {
                 return ResourceManager.GetString("MessageBoxErrorTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Error receiving data from simulator: {0}.
         /// </summary>
-        public static string OnRecvExceptionMessage
-        {
-            get
-            {
+        public static string OnRecvExceptionMessage {
+            get {
                 return ResourceManager.GetString("OnRecvExceptionMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Error receiving data from simulator: {0}.
         /// </summary>
-        public static string ReceiveMessageExceptionMessage
-        {
-            get
-            {
+        public static string ReceiveMessageExceptionMessage {
+            get {
                 return ResourceManager.GetString("ReceiveMessageExceptionMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Save....
         /// </summary>
-        public static string SaveButtonLabel
-        {
-            get
-            {
+        public static string SaveButtonLabel {
+            get {
                 return ResourceManager.GetString("SaveButtonLabel", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Connected to simulator.
         /// </summary>
-        public static string SimConnectedMessage
-        {
-            get
-            {
+        public static string SimConnectedMessage {
+            get {
                 return ResourceManager.GetString("SimConnectedMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Error connecting to simulator: {0}.
         /// </summary>
-        public static string SimConnectionErrror
-        {
-            get
-            {
+        public static string SimConnectionErrror {
+            get {
                 return ResourceManager.GetString("SimConnectionErrror", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Waiting for simulator....
         /// </summary>
-        public static string WaitingForSimulatorMessage
-        {
-            get
-            {
+        public static string WaitingForSimulatorMessage {
+            get {
                 return ResourceManager.GetString("WaitingForSimulatorMessage", resourceCulture);
             }
         }
