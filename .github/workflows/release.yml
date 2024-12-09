@@ -26,6 +26,9 @@ jobs:
 
       - name: Zip the build output
         run: |
+          # Get rid of doc comment XML files, they're only generated for StyleCop validation
+          # and should not be included in the build output.
+          Remove-Item ./bin/Release/net9.0-windows/*.xml
           Compress-Archive -Path ./bin/Release/net9.0-windows/* -DestinationPath ./release.zip
 
       - name: Upload release assets
