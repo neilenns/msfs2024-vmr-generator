@@ -66,7 +66,7 @@ namespace VmrGenerator.ViewModels.ModelMatching
                     return;
                 }
 
-                this.ErrorMessage = string.Format(this._resourceManager.GetString("SimConnectionErrror") ?? string.Empty, ex.Message);
+                this.ErrorMessage = string.Format(this.resourceManager.GetString("SimConnectionErrror") ?? string.Empty, ex.Message);
             }
         }
 
@@ -106,7 +106,7 @@ namespace VmrGenerator.ViewModels.ModelMatching
                             }
                             else
                             {
-                                this.ErrorMessage = string.Format(this._resourceManager.GetString("ReceiveMessageExceptionMessage") ?? string.Empty, ex.Message);
+                                this.ErrorMessage = string.Format(this.resourceManager.GetString("ReceiveMessageExceptionMessage") ?? string.Empty, ex.Message);
                             }
                         }
 
@@ -129,7 +129,7 @@ namespace VmrGenerator.ViewModels.ModelMatching
         /// <param name="data">Details of the exception.</param>
         private void SimConnect_OnRecvException(SimConnect sender, SIMCONNECT_RECV_EXCEPTION data)
         {
-            this.ErrorMessage = string.Format(this._resourceManager.GetString("OnRecvExceptionMessage") ?? string.Empty, data.dwException);
+            this.ErrorMessage = string.Format(this.resourceManager.GetString("OnRecvExceptionMessage") ?? string.Empty, data.dwException);
         }
 
         /// <summary>
