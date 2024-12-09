@@ -20,7 +20,6 @@ namespace VmrGenerator.Services
         /// Shows a Win32 save file dialog to the user and returns the file name.
         /// </summary>
         /// <returns>The file name if the dialog was closed successfully, or an empty string if canceled.</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
         public string ShowDialog()
         {
             var saveFileDialog = new SaveFileDialog
