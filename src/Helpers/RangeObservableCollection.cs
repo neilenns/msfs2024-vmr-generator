@@ -1,41 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VmrGenerator.Helpers
+﻿namespace VmrGenerator.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Implements an observable collection that supports adding a range of objects without firing
     /// a change event for each one.
     /// </summary>
-    /// <typeparam name="T">The type contained in the collection</typeparam>
+    /// <typeparam name="T">The type contained in the collection.</typeparam>
     public class RangeObservableCollection<T> : ObservableCollection<T>
     {
-        private bool _suppressNotification = false;
+        private bool suppressNotification = false;
 
-        protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
-        {
-            if (!_suppressNotification)
-                base.OnCollectionChanged(e);
-        }
-
+        /// <summary>
+        /// Adds a list of elements to the collection, suppressing change notifications
+        /// until all items in the range are added.
+        /// </summary>
+        /// <param name="list">The list of items to add.</param>
+        /// <exception cref="ArgumentNullException">Thrown if the list is null.</exception>
         public void AddRange(IEnumerable<T> list)
         {
-            if (list == null)
-                throw new ArgumentNullException("list");
+            ArgumentNullException.ThrowIfNull(list);
 
-            _suppressNotification = true;
+            this.suppressNotification = true;
 
             foreach (T item in list)
             {
-                Add(item);
+                this.Add(item);
             }
-            _suppressNotification = false;
-            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+
+            this.suppressNotification = false;
+            this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+
+        /// <inheritdoc/>
+        protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
+        {
+            if (!this.suppressNotification)
+            {
+                base.OnCollectionChanged(e);
+            }
         }
     }
 }
