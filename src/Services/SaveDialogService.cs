@@ -1,15 +1,20 @@
-using Microsoft.Win32;
-using VmrGenerator.Interfaces;
-
 namespace VmrGenerator.Services
 {
+    using System;
+    using Microsoft.Win32;
+    using VmrGenerator.Interfaces;
+
+    /// <summary>
+    /// Provides a Win32 FileSave dialog via the ISaveDialogService interface.
+    /// </summary>
     public class SaveDialogService : ISaveDialogService
     {
-        private static readonly ISaveDialogService _instance = new SaveDialogService();
+        private static readonly ISaveDialogService InstanceValue = new SaveDialogService();
+
         /// <summary>
-        /// Provides an instance of the MessageBoxService.
+        /// Gets an instance of the MessageBoxService.
         /// </summary>
-        public static ISaveDialogService Instance => _instance;
+        public static ISaveDialogService Instance => InstanceValue;
 
         /// <summary>
         /// Shows a Win32 save file dialog to the user and returns the file name.
@@ -22,11 +27,11 @@ namespace VmrGenerator.Services
             {
                 Filter = "Model Matching Rule Sets (*.vmr)|*.vmr|All Files (*.*)|*.*",
                 Title = "Save model matching file",
-                FileName = "MSFS2024.vmr"
+                FileName = "MSFS2024.vmr",
             };
 
             bool result = saveFileDialog.ShowDialog() ?? false;
-            return result ? saveFileDialog.FileName : "";
+            return result ? saveFileDialog.FileName : string.Empty;
         }
     }
 }
