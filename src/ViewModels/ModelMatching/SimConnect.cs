@@ -58,7 +58,6 @@ namespace VmrGenerator.ViewModels.ModelMatching
                 this.SimConnect.OnRecvOpen += this.SimConnect_OnRecvOpen;
                 this.SimConnect.OnRecvQuit += this.SimConnect_OnRecvQuit;
                 this.SimConnect.OnRecvException += this.SimConnect_OnRecvException;
-                this.SimConnect.OnRecvEnumerateInputEvents += this.SimConnect_OnRecvEnumerateInputEvents;
                 this.SimConnect.OnRecvEnumerateSimobjectAndLiveryList += this.SimConnect_OnRecvEnumerateSimobjectAndLiveryList;
             }
             catch (COMException ex)

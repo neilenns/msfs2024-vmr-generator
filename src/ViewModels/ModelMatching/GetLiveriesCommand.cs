@@ -69,29 +69,5 @@ namespace VmrGenerator.ViewModels.ModelMatching
 
             this.Liveries.AddRange(liveriesToAdd);
         }
-
-        /// <summary>
-        /// Handles receiving input events from the simulator.
-        /// </summary>
-        /// <param name="sender">Sender of the exception.</param>
-        /// <param name="data">SimConnect additional details.</param>
-        private void SimConnect_OnRecvEnumerateInputEvents(SimConnect sender, SIMCONNECT_RECV_ENUMERATE_INPUT_EVENTS data)
-        {
-            List<Livery> liveriesToAdd = [];
-
-            foreach (object item in data.rgData)
-            {
-                if (item is SIMCONNECT_INPUT_EVENT_DESCRIPTOR descriptor)
-                {
-                    liveriesToAdd.Add(new Livery()
-                    {
-                        ModelName = descriptor.Name,
-                        TypeCode = descriptor.Hash.ToString(),
-                    });
-                }
-            }
-
-            this.Liveries.AddRange(liveriesToAdd);
-        }
     }
 }
