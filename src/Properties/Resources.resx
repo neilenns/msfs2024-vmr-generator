@@ -138,8 +138,8 @@
     <comment>Header for the type code column in the main window data grid.</comment>
   </data>
   <data name="GetAircraftButtonLabel" xml:space="preserve">
-    <value>Get aircraft</value>
-    <comment>Label for the Get Aircraft button in the main window.</comment>
+    <value>Get from sim</value>
+    <comment>Label for the get button in the main window.</comment>
   </data>
   <data name="MainWindowTitle" xml:space="preserve">
     <value>MSFS2024 model matching exporter</value>

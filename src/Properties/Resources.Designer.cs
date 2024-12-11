@@ -106,7 +106,7 @@ namespace VmrGenerator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get aircraft.
+        ///   Looks up a localized string similar to Get from sim.
         /// </summary>
         public static string GetAircraftButtonLabel {
             get {

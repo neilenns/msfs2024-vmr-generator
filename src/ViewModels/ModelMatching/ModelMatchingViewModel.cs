@@ -17,6 +17,7 @@ namespace VmrGenerator.ViewModels.ModelMatching
     using System.Timers;
     using System.Windows.Input;
     using System.Xml.Serialization;
+    using Microsoft.FlightSimulator.SimConnect;
     using VmrGenerator.Helpers;
     using VmrGenerator.Interfaces;
     using VmrGenerator.Models;
@@ -32,16 +33,18 @@ namespace VmrGenerator.ViewModels.ModelMatching
         /// </summary>
         private readonly System.Timers.Timer checkForSimTimer;
 
+        /// <summary>
+        /// Provides localized strings for various properties in the view model.
+        /// </summary>
+        private readonly ResourceManager resourceManager;
+
         private string? errorMessage;
 
         private bool isConnected;
 
         private bool isSimRunning;
 
-        /// <summary>
-        /// Provides localized strings for various properties in the view model.
-        /// </summary>
-        private ResourceManager resourceManager;
+        private SIMCONNECT_SIMOBJECT_TYPE selectedObjectType;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelMatchingViewModel"/> class.
@@ -49,6 +52,8 @@ namespace VmrGenerator.ViewModels.ModelMatching
         public ModelMatchingViewModel()
         {
             this.resourceManager = new ResourceManager("VmrGenerator.Properties.Resources", typeof(ModelMatchingViewModel).Assembly);
+
+            this.SelectedSimObjectType = SIMCONNECT_SIMOBJECT_TYPE.ALL;
 
             // Set up a timer to check for the sim every second.
             this.checkForSimTimer = new System.Timers.Timer(1000);
@@ -60,6 +65,12 @@ namespace VmrGenerator.ViewModels.ModelMatching
         /// Fires when the value of a property changes.
         /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        /// <summary>
+        /// Gets the string names of SIMCONNECT_SIMOBJECT_TYPE enum values.
+        /// </summary>
+        public static IEnumerable<SIMCONNECT_SIMOBJECT_TYPE> SimConnectObjectTypes =>
+        Enum.GetValues<SIMCONNECT_SIMOBJECT_TYPE>().OrderBy(e => e.ToString());
 
         /// <summary>
         /// Gets or sets a message box to display information to the user.
@@ -76,6 +87,21 @@ namespace VmrGenerator.ViewModels.ModelMatching
         /// of the SimConnect commands.
         /// </summary>
         public IntPtr WindowHandle { get; set; }
+
+        /// <summary>
+        /// Gets or sets the selected sim object type.
+        /// </summary>
+        public SIMCONNECT_SIMOBJECT_TYPE SelectedSimObjectType
+        {
+            get => this.selectedObjectType; set
+            {
+                if (this.selectedObjectType != value)
+                {
+                    this.selectedObjectType = value;
+                    this.OnPropertyChanged(nameof(this.SelectedSimObjectType));
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the error text for any errors encountered by the view model.

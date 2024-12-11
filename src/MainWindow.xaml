@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VmrGenerator"
+        xmlns:vm="clr-namespace:VmrGenerator.ViewModels.ModelMatching"
         xmlns:properties="clr-namespace:VmrGenerator.Properties" 
         xmlns:modelmatching="clr-namespace:VmrGenerator.ViewModels.ModelMatching" 
         d:DataContext="{d:DesignInstance Type=modelmatching:ModelMatchingViewModel}"
@@ -11,8 +12,8 @@
         x:Class="VmrGenerator.MainWindow"
         Title="{x:Static properties:Resources.MainWindowTitle}" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnGetAircraft" TabIndex="0" Content="{x:Static properties:Resources.GetAircraftButtonLabel}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Command="{Binding GetLiveriesCommand}"/>
-        <Button x:Name="btnSave" TabIndex="1" Content="{x:Static properties:Resources.SaveButtonLabel}" HorizontalAlignment="Left" Margin="78,10,0,0" VerticalAlignment="Top" Command="{Binding SaveLiveriesCommand}" RenderTransformOrigin="-0.856,0.538"/>
+        <Button x:Name="btnGetAircraft" TabIndex="0" Content="{x:Static properties:Resources.GetAircraftButtonLabel}" HorizontalAlignment="Left" Margin="135,11,0,0" VerticalAlignment="Top" Command="{Binding GetLiveriesCommand}"/>
+        <Button x:Name="btnSave" TabIndex="1" Content="{x:Static properties:Resources.SaveButtonLabel}" HorizontalAlignment="Left" Margin="213,11,0,0" VerticalAlignment="Top" Command="{Binding SaveLiveriesCommand}" RenderTransformOrigin="-0.856,0.538"/>
         <TextBlock x:Name="dataGridLabel" HorizontalAlignment="Left" Margin="10,37,0,0" TextWrapping="Wrap" Text="{x:Static properties:Resources.DataGridLabel}" VerticalAlignment="Top" Width="138"/>
         <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" TabIndex="2" AutomationProperties.LabeledBy="{Binding ElementName=dataGridLabel}" ItemsSource="{Binding Liveries}" Margin="10,58,10,25" AutoGenerateColumns="False" CanUserAddRows="False" HeadersVisibility="Column">
             <DataGrid.Columns>
@@ -27,5 +28,6 @@
                 <TextBlock x:Name="WaitingTextBlock" Text="{Binding SimConnectedStateMessage}"/>
             </StatusBarItem>
         </StatusBar>
+        <ComboBox HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{x:Static vm:ModelMatchingViewModel.SimConnectObjectTypes}" SelectedItem="{Binding SelectedSimObjectType}"/>
     </Grid>
 </Window>
