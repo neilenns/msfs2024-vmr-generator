@@ -135,13 +135,16 @@ namespace VmrGenerator.ViewModels.ModelMatching
         {
             get
             {
-                return [.. this.Liveries.GroupBy(l => new { l.CallsignPrefix, l.TypeCode, l.FlightNumberRange }).Select(g => new Livery
+                return [.. this.Liveries.Where(l => !string.IsNullOrEmpty(l.CallsignPrefix) && !string.IsNullOrEmpty(l.TypeCode))
+                .GroupBy(l => new { l.CallsignPrefix, l.TypeCode, l.FlightNumberRange, l.ModelName })
+                .Select(g => new Livery
                 {
                     CallsignPrefix = g.Key.CallsignPrefix,
                     TypeCode = g.Key.TypeCode,
                     FlightNumberRange = g.Key.FlightNumberRange,
-                    ModelName = string.Join("//", g.Select(l => l.ModelName)),
-                })];
+                    ModelName = g.Key.ModelName,
+                    LiveryName = string.Join("//", g.Select(l => l.LiveryName)),
+                }).OrderBy(l => l.CallsignPrefix)];
             }
         }
 

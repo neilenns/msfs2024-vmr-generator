@@ -21,6 +21,8 @@
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridFlightNumberRangeHeader}" Binding="{Binding FlightNumberRange}"/>
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridTypeCodeHeader}" Binding="{Binding TypeCode}"/>
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridModelNameHeader}" Binding="{Binding ModelName}"/>
+                <DataGridTextColumn Header="{x:Static properties:Resources.DataGridAsoboAirlineHeader}" Binding="{Binding AsoboAirline}"/>
+                <DataGridTextColumn Header="{x:Static properties:Resources.DataGridAsoboTypeCodeHeader}" Binding="{Binding AsoboTypeCode}"/>
             </DataGrid.Columns>
         </DataGrid>
         <StatusBar VerticalAlignment="Bottom">
