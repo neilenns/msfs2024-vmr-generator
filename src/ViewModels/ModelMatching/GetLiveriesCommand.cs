@@ -39,6 +39,8 @@ namespace VmrGenerator.ViewModels.ModelMatching
             }
 
             this.SimConnect.EnumerateSimObjectsAndLiveries(RequestID.GetInputEvents, SIMCONNECT_SIMOBJECT_TYPE.AIRCRAFT);
+            this.SimConnect.EnumerateSimObjectsAndLiveries(RequestID.GetInputEvents, SIMCONNECT_SIMOBJECT_TYPE.HELICOPTER);
+            this.SimConnect.EnumerateSimObjectsAndLiveries(RequestID.GetInputEvents, SIMCONNECT_SIMOBJECT_TYPE.HOT_AIR_BALLOON);
         }
 
         /// <summary>
