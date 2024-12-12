@@ -61,6 +61,24 @@ namespace VmrGenerator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asobo airline.
+        /// </summary>
+        public static string DataGridAsoboAirlineHeader {
+            get {
+                return ResourceManager.GetString("DataGridAsoboAirlineHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asobo type code.
+        /// </summary>
+        public static string DataGridAsoboTypeCodeHeader {
+            get {
+                return ResourceManager.GetString("DataGridAsoboTypeCodeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Callsign prefix.
         /// </summary>
         public static string DataGridCallsignPrefixHeader {
@@ -88,6 +106,15 @@ namespace VmrGenerator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Livery.
+        /// </summary>
+        public static string DataGridLiveryNameHeader {
+            get {
+                return ResourceManager.GetString("DataGridLiveryNameHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Model name.
         /// </summary>
         public static string DataGridModelNameHeader {
@@ -106,7 +133,7 @@ namespace VmrGenerator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Get aircraft.
+        ///   Looks up a localized string similar to Get from sim.
         /// </summary>
         public static string GetAircraftButtonLabel {
             get {

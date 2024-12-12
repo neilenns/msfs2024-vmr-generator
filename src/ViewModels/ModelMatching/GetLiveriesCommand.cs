@@ -5,7 +5,9 @@
 
 namespace VmrGenerator.ViewModels.ModelMatching
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Windows.Input;
     using Microsoft.FlightSimulator.SimConnect;
     using VmrGenerator.Helpers;
@@ -36,7 +38,8 @@ namespace VmrGenerator.ViewModels.ModelMatching
                 return;
             }
 
-            this.SimConnect.EnumerateInputEvents(RequestID.GetInputEvents);
+            this.Liveries.Clear();
+            this.SimConnect.EnumerateSimObjectsAndLiveries(RequestID.GetInputEvents, this.SelectedSimObjectType);
         }
 
         /// <summary>
@@ -48,25 +51,19 @@ namespace VmrGenerator.ViewModels.ModelMatching
             return this.IsConnected && this.SimConnect != null;
         }
 
-        /// <summary>
-        /// Handles receiving input events from the simulator.
-        /// </summary>
-        /// <param name="sender">Sender of the exception.</param>
-        /// <param name="data">SimConnect additional details.</param>
-        private void SimConnect_OnRecvEnumerateInputEvents(SimConnect sender, SIMCONNECT_RECV_ENUMERATE_INPUT_EVENTS data)
+        private void SimConnect_OnRecvEnumerateSimobjectAndLiveryList(SimConnect sender, SIMCONNECT_RECV_ENUMERATE_SIMOBJECT_AND_LIVERY_LIST data)
         {
             List<Livery> liveriesToAdd = [];
 
-            foreach (object item in data.rgData)
+            foreach (SIMCONNECT_ENUMERATE_SIMOBJECT_LIVERY item in data.rgData.Cast<SIMCONNECT_ENUMERATE_SIMOBJECT_LIVERY>())
             {
-                if (item is SIMCONNECT_INPUT_EVENT_DESCRIPTOR descriptor)
+                liveriesToAdd.Add(new Livery()
                 {
-                    liveriesToAdd.Add(new Livery()
-                    {
-                        ModelName = descriptor.Name,
-                        TypeCode = descriptor.Hash.ToString(),
-                    });
-                }
+                    ModelName = item.AircraftTitle,
+                    LiveryName = item.LiveryName,
+                });
+
+                Console.WriteLine(item);
             }
 
             this.Liveries.AddRange(liveriesToAdd);

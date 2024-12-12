@@ -117,6 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DataGridAsoboAirlineHeader" xml:space="preserve">
+    <value>Asobo airline</value>
+    <comment>Header for the Asobo airline column in the main window data grid.</comment>
+  </data>
+  <data name="DataGridAsoboTypeCodeHeader" xml:space="preserve">
+    <value>Asobo type code</value>
+    <comment>Header for the Asobo type code column in the main window data grid.</comment>
+  </data>
   <data name="DataGridCallsignPrefixHeader" xml:space="preserve">
     <value>Callsign prefix</value>
     <comment>Header for the callsign prefix column in the main window data grid.</comment>
@@ -129,6 +137,10 @@
     <value>Liveries</value>
     <comment>Label for the data grid in the main window.</comment>
   </data>
+  <data name="DataGridLiveryNameHeader" xml:space="preserve">
+    <value>Livery</value>
+    <comment>Header for the livery name column in the main window data grid.</comment>
+  </data>
   <data name="DataGridModelNameHeader" xml:space="preserve">
     <value>Model name</value>
     <comment>Header for the model name column in the main window data grid.</comment>
@@ -138,8 +150,8 @@
     <comment>Header for the type code column in the main window data grid.</comment>
   </data>
   <data name="GetAircraftButtonLabel" xml:space="preserve">
-    <value>Get aircraft</value>
-    <comment>Label for the Get Aircraft button in the main window.</comment>
+    <value>Get from sim</value>
+    <comment>Label for the get button in the main window.</comment>
   </data>
   <data name="MainWindowTitle" xml:space="preserve">
     <value>MSFS2024 model matching exporter</value>
