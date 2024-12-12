@@ -1,8 +1,10 @@
 # MSFS2024 model matching generator
 
 > [!WARNING]
-> This doesn't do anything useful yet. It's pending an update to MSFS2024 due in mid-December
-> that adds the necessary interface to retrieve the list of aircraft and liveries.
+> This doesn't do anything useful yet. While it generates something approximating a vPilot model matching
+> file, vPilot does not currently support adding an aircraft with an associated livery. Until MSFS
+> includes more models, and hopefully provides more data about those models, you should stick with
+> [FSTL Traffic](https://fslivetrafficliveries.com/) and its model matching file.
 
 Creates a VATSIM model matching file for MSFS2024 aircraft and livery.
 
