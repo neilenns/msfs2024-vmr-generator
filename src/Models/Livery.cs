@@ -84,6 +84,18 @@ namespace VmrGenerator.Models
         /// <param name="liveryName">The livery name to process.</param>
         private void ExtractTypeCodeAndAirline(string liveryName)
         {
+            // Lots of liveries have this in them and they don't map to any airline so skip them.
+            if (liveryName.Contains("OFFICIAL"))
+            {
+                return;
+            }
+
+            // Lots of liveries end with this and they don't map to any airline so skip them.
+            if (liveryName.EndsWith("_0") || liveryName.EndsWith("_01") || liveryName.EndsWith("_03") || liveryName.EndsWith("_JET2"))
+            {
+                return;
+            }
+
             var cleanedLiveryName = liveryName.Replace("_AIRLINES", string.Empty);
             int lastUnderscore = cleanedLiveryName.LastIndexOf('_');
 

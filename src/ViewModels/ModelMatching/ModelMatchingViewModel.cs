@@ -53,7 +53,7 @@ namespace VmrGenerator.ViewModels.ModelMatching
         {
             this.resourceManager = new ResourceManager("VmrGenerator.Properties.Resources", typeof(ModelMatchingViewModel).Assembly);
 
-            this.SelectedSimObjectType = SIMCONNECT_SIMOBJECT_TYPE.ALL;
+            this.SelectedSimObjectType = SIMCONNECT_SIMOBJECT_TYPE.USER;
 
             // Set up a timer to check for the sim every second.
             this.checkForSimTimer = new System.Timers.Timer(1000);
