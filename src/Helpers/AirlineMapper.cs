@@ -49,7 +49,7 @@ namespace VmrGenerator.Helpers
         // Loads data from JSON file
         private void LoadAirlineData()
         {
-            string jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Data\\airlines.json");
+            string jsonFilePath = "Data\\airlines.json";
             if (!File.Exists(jsonFilePath))
             {
                 throw new FileNotFoundException($"The file '{jsonFilePath}' was not found.");

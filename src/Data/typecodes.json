@@ -1,53 +1,206 @@
 [
-  { "AsoboTypeCode": "150", "IcaoTypeCode": "C150" },
-  { "AsoboTypeCode": "152_AEROBAT", "IcaoTypeCode": "C152" },
-  { "AsoboTypeCode": "152", "IcaoTypeCode": "C152" },
-  { "AsoboTypeCode": "A318", "IcaoTypeCode": "A318" },
-  { "AsoboTypeCode": "A319_CEO", "IcaoTypeCode": "A319" },
-  { "AsoboTypeCode": "A320_CEO_EASY", "IcaoTypeCode": "A320" },
-  { "AsoboTypeCode": "A320_CEO", "IcaoTypeCode": "A320" },
-  { "AsoboTypeCode": "A320_NEO", "IcaoTypeCode": "A20N" },
-  { "AsoboTypeCode": "A321_CEO", "IcaoTypeCode": "A321" },
-  { "AsoboTypeCode": "A321_NEO", "IcaoTypeCode": "A21N" },
-  { "AsoboTypeCode": "A330_200", "IcaoTypeCode": "A332" },
-  { "AsoboTypeCode": "A330_200F", "IcaoTypeCode": "A332" },
-  { "AsoboTypeCode": "A330_300", "IcaoTypeCode": "A333" },
-  { "AsoboTypeCode": "A330_300F", "IcaoTypeCode": "A333" },
-  { "AsoboTypeCode": "A330_900", "IcaoTypeCode": "A339" },
-  { "AsoboTypeCode": "A340_300", "IcaoTypeCode": "A343" },
-  { "AsoboTypeCode": "A340_600", "IcaoTypeCode": "A346" },
-  { "AsoboTypeCode": "A350_1000", "IcaoTypeCode": "A35K" },
-  { "AsoboTypeCode": "A350_900", "IcaoTypeCode": "A359" },
-  { "AsoboTypeCode": "A36", "IcaoTypeCode": "A359" },
-  { "AsoboTypeCode": "A380_800", "IcaoTypeCode": "A388" },
-  { "AsoboTypeCode": "ATR42_300", "IcaoTypeCode": "AT43" },
-  { "AsoboTypeCode": "ATR42_300F", "IcaoTypeCode": "AT43" },
-  { "AsoboTypeCode": "ATR42_320", "IcaoTypeCode": "AT43" },
-  { "AsoboTypeCode": "ATR42_500", "IcaoTypeCode": "AT45" },
-  { "AsoboTypeCode": "ATR42_600", "IcaoTypeCode": "AT46" },
-  { "AsoboTypeCode": "B737_300", "IcaoTypeCode": "B733" },
-  { "AsoboTypeCode": "B737_700", "IcaoTypeCode": "B737" },
-  { "AsoboTypeCode": "B737_700F", "IcaoTypeCode": "B737" },
-  { "AsoboTypeCode": "B737_800", "IcaoTypeCode": "B738" },
-  { "AsoboTypeCode": "B737_900", "IcaoTypeCode": "B739" },
-  { "AsoboTypeCode": "B737_900ER", "IcaoTypeCode": "B739" },
-  { "AsoboTypeCode": "B737_MAX8", "IcaoTypeCode": "B38M" },
-  { "AsoboTypeCode": "B737_MAX9", "IcaoTypeCode": "B39M" },
-  { "AsoboTypeCode": "B747_400BDSF", "IcaoTypeCode": "B744" },
-  { "AsoboTypeCode": "B747_400ERF", "IcaoTypeCode": "B744" },
-  { "AsoboTypeCode": "B747_8F", "IcaoTypeCode": "B744" },
-  { "AsoboTypeCode": "B757_200", "IcaoTypeCode": "B752" },
-  { "AsoboTypeCode": "B757_300", "IcaoTypeCode": "B753" },
-  { "AsoboTypeCode": "B767_300ER", "IcaoTypeCode": "B763" },
-  { "AsoboTypeCode": "B767_400ER", "IcaoTypeCode": "B764" },
-  { "AsoboTypeCode": "B777_200", "IcaoTypeCode": "B772" },
-  { "AsoboTypeCode": "B777_200ER", "IcaoTypeCode": "B772" },
-  { "AsoboTypeCode": "B777_200LR", "IcaoTypeCode": "B77L" },
-  { "AsoboTypeCode": "B777_300ER", "IcaoTypeCode": "B773" },
-  { "AsoboTypeCode": "B777_F", "IcaoTypeCode": "B773" },
-  { "AsoboTypeCode": "B787_08", "IcaoTypeCode": "B788" },
-  { "AsoboTypeCode": "B787_09", "IcaoTypeCode": "B789" },
-  { "AsoboTypeCode": "B787_10", "IcaoTypeCode": "B78X" },
-  { "AsoboTypeCode": "B787_10", "IcaoTypeCode": "B78X" },
-  { "AsoboTypeCode": "C140", "IcaoTypeCode": "C140" }
+  {
+    "AsoboTypeCode": "150",
+    "IcaoTypeCode": "C150"
+  },
+  {
+    "AsoboTypeCode": "152_AEROBAT",
+    "IcaoTypeCode": "C152"
+  },
+  {
+    "AsoboTypeCode": "152",
+    "IcaoTypeCode": "C152"
+  },
+  {
+    "AsoboTypeCode": "A318",
+    "IcaoTypeCode": "A318"
+  },
+  {
+    "AsoboTypeCode": "A319_CEO",
+    "IcaoTypeCode": "A319"
+  },
+  {
+    "AsoboTypeCode": "A320_CEO_EASY",
+    "IcaoTypeCode": "A320"
+  },
+  {
+    "AsoboTypeCode": "A320_CEO",
+    "IcaoTypeCode": "A320"
+  },
+  {
+    "AsoboTypeCode": "A320_NEO",
+    "IcaoTypeCode": "A20N"
+  },
+  {
+    "AsoboTypeCode": "A321_CEO",
+    "IcaoTypeCode": "A321"
+  },
+  {
+    "AsoboTypeCode": "A321_NEO",
+    "IcaoTypeCode": "A21N"
+  },
+  {
+    "AsoboTypeCode": "A330_200",
+    "IcaoTypeCode": "A332"
+  },
+  {
+    "AsoboTypeCode": "A330_200F",
+    "IcaoTypeCode": "A332"
+  },
+  {
+    "AsoboTypeCode": "A330_300",
+    "IcaoTypeCode": "A333"
+  },
+  {
+    "AsoboTypeCode": "A330_300F",
+    "IcaoTypeCode": "A333"
+  },
+  {
+    "AsoboTypeCode": "A330_900",
+    "IcaoTypeCode": "A339"
+  },
+  {
+    "AsoboTypeCode": "A340_300",
+    "IcaoTypeCode": "A343"
+  },
+  {
+    "AsoboTypeCode": "A340_600",
+    "IcaoTypeCode": "A346"
+  },
+  {
+    "AsoboTypeCode": "A350_1000",
+    "IcaoTypeCode": "A35K"
+  },
+  {
+    "AsoboTypeCode": "A350_900",
+    "IcaoTypeCode": "A359"
+  },
+  {
+    "AsoboTypeCode": "A36",
+    "IcaoTypeCode": "A359"
+  },
+  {
+    "AsoboTypeCode": "A380_800",
+    "IcaoTypeCode": "A388"
+  },
+  {
+    "AsoboTypeCode": "ATR42_300",
+    "IcaoTypeCode": "AT43"
+  },
+  {
+    "AsoboTypeCode": "ATR42_300F",
+    "IcaoTypeCode": "AT43"
+  },
+  {
+    "AsoboTypeCode": "ATR42_320",
+    "IcaoTypeCode": "AT43"
+  },
+  {
+    "AsoboTypeCode": "ATR42_500",
+    "IcaoTypeCode": "AT45"
+  },
+  {
+    "AsoboTypeCode": "ATR42_600",
+    "IcaoTypeCode": "AT46"
+  },
+  {
+    "AsoboTypeCode": "B737_300",
+    "IcaoTypeCode": "B733"
+  },
+  {
+    "AsoboTypeCode": "B737_700",
+    "IcaoTypeCode": "B737"
+  },
+  {
+    "AsoboTypeCode": "B737_700F",
+    "IcaoTypeCode": "B737"
+  },
+  {
+    "AsoboTypeCode": "B737_800",
+    "IcaoTypeCode": "B738"
+  },
+  {
+    "AsoboTypeCode": "B737_900",
+    "IcaoTypeCode": "B739"
+  },
+  {
+    "AsoboTypeCode": "B737_900ER",
+    "IcaoTypeCode": "B739"
+  },
+  {
+    "AsoboTypeCode": "B737_MAX8",
+    "IcaoTypeCode": "B38M"
+  },
+  {
+    "AsoboTypeCode": "B737_MAX9",
+    "IcaoTypeCode": "B39M"
+  },
+  {
+    "AsoboTypeCode": "B747_400BDSF",
+    "IcaoTypeCode": "B744"
+  },
+  {
+    "AsoboTypeCode": "B747_400ERF",
+    "IcaoTypeCode": "B744"
+  },
+  {
+    "AsoboTypeCode": "B747_8F",
+    "IcaoTypeCode": "B744"
+  },
+  {
+    "AsoboTypeCode": "B757_200",
+    "IcaoTypeCode": "B752"
+  },
+  {
+    "AsoboTypeCode": "B757_300",
+    "IcaoTypeCode": "B753"
+  },
+  {
+    "AsoboTypeCode": "B767_300ER",
+    "IcaoTypeCode": "B763"
+  },
+  {
+    "AsoboTypeCode": "B767_400ER",
+    "IcaoTypeCode": "B764"
+  },
+  {
+    "AsoboTypeCode": "B777_200",
+    "IcaoTypeCode": "B772"
+  },
+  {
+    "AsoboTypeCode": "B777_200ER",
+    "IcaoTypeCode": "B772"
+  },
+  {
+    "AsoboTypeCode": "B777_200LR",
+    "IcaoTypeCode": "B77L"
+  },
+  {
+    "AsoboTypeCode": "B777_300ER",
+    "IcaoTypeCode": "B773"
+  },
+  {
+    "AsoboTypeCode": "B777_F",
+    "IcaoTypeCode": "B773"
+  },
+  {
+    "AsoboTypeCode": "B787_08",
+    "IcaoTypeCode": "B788"
+  },
+  {
+    "AsoboTypeCode": "B787_09",
+    "IcaoTypeCode": "B789"
+  },
+  {
+    "AsoboTypeCode": "B787_10",
+    "IcaoTypeCode": "B78X"
+  },
+  {
+    "AsoboTypeCode": "B787_10",
+    "IcaoTypeCode": "B78X"
+  },
+  {
+    "AsoboTypeCode": "C140",
+    "IcaoTypeCode": "C140"
+  }
 ]

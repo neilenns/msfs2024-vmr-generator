@@ -49,7 +49,7 @@ namespace VmrGenerator.Helpers
         // Loads data from JSON file
         private void LoadTypeCodeData()
         {
-            string jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Data\\typecodes.json");
+            string jsonFilePath = "Data\\typecodes.json";
             if (!File.Exists(jsonFilePath))
             {
                 throw new FileNotFoundException($"The file '{jsonFilePath}' was not found.");
