@@ -137,6 +137,10 @@
     <value>Liveries</value>
     <comment>Label for the data grid in the main window.</comment>
   </data>
+  <data name="DataGridLiveryNameHeader" xml:space="preserve">
+    <value>Livery</value>
+    <comment>Header for the livery name column in the main window data grid.</comment>
+  </data>
   <data name="DataGridModelNameHeader" xml:space="preserve">
     <value>Model name</value>
     <comment>Header for the model name column in the main window data grid.</comment>

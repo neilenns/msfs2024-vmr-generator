@@ -106,6 +106,15 @@ namespace VmrGenerator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Livery.
+        /// </summary>
+        public static string DataGridLiveryNameHeader {
+            get {
+                return ResourceManager.GetString("DataGridLiveryNameHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Model name.
         /// </summary>
         public static string DataGridModelNameHeader {
