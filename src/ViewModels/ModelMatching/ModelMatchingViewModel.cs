@@ -53,7 +53,7 @@ namespace VmrGenerator.ViewModels.ModelMatching
         {
             this.resourceManager = new ResourceManager("VmrGenerator.Properties.Resources", typeof(ModelMatchingViewModel).Assembly);
 
-            this.SelectedSimObjectType = SIMCONNECT_SIMOBJECT_TYPE.ALL;
+            this.SelectedSimObjectType = SIMCONNECT_SIMOBJECT_TYPE.USER;
 
             // Set up a timer to check for the sim every second.
             this.checkForSimTimer = new System.Timers.Timer(1000);
@@ -135,13 +135,16 @@ namespace VmrGenerator.ViewModels.ModelMatching
         {
             get
             {
-                return [.. this.Liveries.GroupBy(l => new { l.CallsignPrefix, l.TypeCode, l.FlightNumberRange }).Select(g => new Livery
+                return [.. this.Liveries.Where(l => !string.IsNullOrEmpty(l.CallsignPrefix) && !string.IsNullOrEmpty(l.TypeCode))
+                .GroupBy(l => new { l.CallsignPrefix, l.TypeCode, l.FlightNumberRange, l.ModelName })
+                .Select(g => new Livery
                 {
                     CallsignPrefix = g.Key.CallsignPrefix,
                     TypeCode = g.Key.TypeCode,
                     FlightNumberRange = g.Key.FlightNumberRange,
-                    ModelName = string.Join("//", g.Select(l => l.ModelName)),
-                })];
+                    ModelName = g.Key.ModelName,
+                    LiveryName = string.Join("//", g.Select(l => l.LiveryName)),
+                }).OrderBy(l => l.CallsignPrefix)];
             }
         }
 

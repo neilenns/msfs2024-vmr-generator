@@ -60,7 +60,7 @@ namespace VmrGenerator.ViewModels.ModelMatching
                 liveriesToAdd.Add(new Livery()
                 {
                     ModelName = item.AircraftTitle,
-                    TypeCode = item.LiveryName,
+                    LiveryName = item.LiveryName,
                 });
 
                 Console.WriteLine(item);

@@ -1,0 +1,82 @@
+[
+  {
+    "AsoboAirline": "AEROMEXICO",
+    "IcaoAirline": "AMX"
+  },
+  {
+    "AsoboAirline": "AIRNEWZEALAND",
+    "IcaoAirline": "ANZ"
+  },
+  {
+    "AsoboAirline": "ALASKA",
+    "IcaoAirline": "ASA"
+  },
+  {
+    "AsoboAirline": "ALASKAAIRLINES",
+    "IcaoAirline": "ASA"
+  },
+  {
+    "AsoboAirline": "ALASKAN",
+    "IcaoAirline": "ASA"
+  },
+  {
+    "AsoboAirline": "ALASKANAIRLINES",
+    "IcaoAirline": "ASA"
+  },
+  {
+    "AsoboAirline": "ALLEGIANT",
+    "IcaoAirline": "AAY"
+  },
+  {
+    "AsoboAirline": "IBERIA",
+    "IcaoAirline": "IBE"
+  },
+  {
+    "AsoboAirline": "KLM",
+    "IcaoAirline": "KLM"
+  },
+  {
+    "AsoboAirline": "KOREANAIR",
+    "IcaoAirline": "KAL"
+  },
+  {
+    "AsoboAirline": "QATAR",
+    "IcaoAirline": "QTR"
+  },
+  {
+    "AsoboAirline": "QATARAIRWAYS",
+    "IcaoAirline": "QTR"
+  },
+  {
+    "AsoboAirline": "SPIRIT",
+    "IcaoAirline": "NKS"
+  },
+  {
+    "AsoboAirline": "SPIRITAIRLINES",
+    "IcaoAirline": "NKS"
+  },
+  {
+    "AsoboAirline": "TAROM",
+    "IcaoAirline": "ROT"
+  },
+  {
+    "AsoboAirline": "TAROM",
+    "IcaoAirline": "ROT"
+  },
+  {
+    "AsoboAirline": "UNITED",
+    "IcaoAirline": "UAL"
+  },
+  {
+    "AsoboAirline": "UNITEDAIRLINES",
+    "IcaoAirline": "UAL"
+  },
+  {
+    "AsoboAirline": "UNITEDEXPRESS",
+    "IcaoAirline": "UAL"
+  },
+  {
+    "AsoboAirline": "WIZZAIR",
+    "IcaoAirline": "WZZ"
+  }
+]

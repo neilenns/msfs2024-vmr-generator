@@ -18,9 +18,11 @@
         <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" TabIndex="2" AutomationProperties.LabeledBy="{Binding ElementName=dataGridLabel}" ItemsSource="{Binding Liveries}" Margin="10,58,10,25" AutoGenerateColumns="False" CanUserAddRows="False" HeadersVisibility="Column">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridCallsignPrefixHeader}" Binding="{Binding CallsignPrefix}"/>
-                <DataGridTextColumn Header="{x:Static properties:Resources.DataGridFlightNumberRangeHeader}" Binding="{Binding FlightNumberRange}"/>
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridTypeCodeHeader}" Binding="{Binding TypeCode}"/>
                 <DataGridTextColumn Header="{x:Static properties:Resources.DataGridModelNameHeader}" Binding="{Binding ModelName}"/>
+                <DataGridTextColumn Header="{x:Static properties:Resources.DataGridLiveryNameHeader}" Binding="{Binding LiveryName}"/>
+                <DataGridTextColumn Header="{x:Static properties:Resources.DataGridAsoboAirlineHeader}" Binding="{Binding AsoboAirline}"/>
+                <DataGridTextColumn Header="{x:Static properties:Resources.DataGridAsoboTypeCodeHeader}" Binding="{Binding AsoboTypeCode}"/>
             </DataGrid.Columns>
         </DataGrid>
         <StatusBar VerticalAlignment="Bottom">

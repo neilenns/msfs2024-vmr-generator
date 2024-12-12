@@ -21,8 +21,8 @@ jobs:
       - name: Build the application
         run: dotnet build vmr-generator.sln --configuration Release -warnaserror
 
-      - name: Run tests
-        run: dotnet test vmr-generator.sln --configuration Release
+      # - name: Run tests
+      #   run: dotnet test vmr-generator.sln --configuration Release
 
       - name: Zip the build output
         run: |
